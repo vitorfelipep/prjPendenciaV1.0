@@ -27,6 +27,9 @@
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Descrição da pendência:" />
 						<p:inputText id="descPend"  value="#{filtroMb.filtro.descPendencia}" maxlength="200" style="width:250px;" />
 						
+						<p:outputLabel for="effect" value="Previsão de fechamento:" />
+        				<p:calendar id="effect" value="#{filtroMb.filtro.dataPrevPendencia}" effect="fold" />
+						
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="advanced" value="Pasta:" />	
 						<p:selectOneMenu id="advanced" value="#{filtroMb.filtro.pasta}"  >
 					          	<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -41,14 +44,13 @@
 					            <p:ajax update="msgLastname" listener="#{filtroMb.addMessage}" />
 					        </p:selectBooleanCheckbox>
 				        
-				        
-				        
-				        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="nomeExtensao" value="Nome da Extensão:" />	
-						<p:inputText id="nomeExtensao"  value="#{filtroMb.filtro.nomeExtensao}" maxlength="25" style="width:200px" />
 
+					        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="nomeExtensao" value="Nome da Extensão:" />	
+							<p:inputText id="nomeExtensao"  value="#{filtroMb.filtro.nomeExtensao}" maxlength="25" style="width:200px;" />
+	
 					        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descExt" value="Extensão:" />	
-							 <p:inputTextarea rows="4" cols="33" value="#{filtroMb.filtro.extensao}" id="descExt"/>
-				        
+							<p:inputTextarea rows="4" cols="33" value="#{filtroMb.filtro.extensao}" id="descExt"/>
+							
 					<br/>
 					
 		   		</p:panelGrid>

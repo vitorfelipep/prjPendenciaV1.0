@@ -1,9 +1,12 @@
 package br.com.model;
 
+import java.util.Date;
+
 public class FiltroCadPendencia {
 	
 	private String nomPendencia;
 	private String descPendencia;
+	private Date dataPrevPendencia;
 	private int pasta;
 	private int opcapExtensao;
 	private String nomeExtensao;
@@ -49,7 +52,13 @@ public class FiltroCadPendencia {
 		this.extensao = extensao;
 	}
 	
-	
+	public Date getDataPrevPendencia() {
+		return dataPrevPendencia;
+	}
+
+	public void setDataPrevPendencia(Date dataPrevPendencia) {
+		this.dataPrevPendencia = dataPrevPendencia;
+	}
 
 	public String getNomeExtensao() {
 		return nomeExtensao;
@@ -62,9 +71,10 @@ public class FiltroCadPendencia {
 	@Override
 	public String toString() {
 		return "FiltroCadPendencia [nomPendencia=" + nomPendencia
-				+ ", descPendencia=" + descPendencia + ", pasta=" + pasta
-				+ ", opcapExtensao=" + opcapExtensao + ", nomeExtensao="
-				+ nomeExtensao + ", extensao=" + extensao + "]";
+				+ ", descPendencia=" + descPendencia + ", dataPrevPendencia="
+				+ dataPrevPendencia + ", pasta=" + pasta + ", opcapExtensao="
+				+ opcapExtensao + ", nomeExtensao=" + nomeExtensao
+				+ ", extensao=" + extensao + "]";
 	}
 
 	

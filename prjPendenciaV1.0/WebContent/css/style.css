@@ -38,6 +38,10 @@ body{
 		margin-left: -40px !important;
 }
 
+#formFiltro:j_idt54{
+	display:none;
+}
+
 #modal{
 	width:600px;
 }

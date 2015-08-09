@@ -1,5 +1,6 @@
 package br.com.persistence.dao;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.faces.application.FacesMessage;
@@ -12,12 +13,14 @@ public class PendenciaDao extends DaoMySql{
 	public void cadastrarPendencia(FiltroCadPendencia filtro){
 		try{
 			open();
-				String sql = "INSERT INTO adv_pendencia.tab_pedencia VALUES(null, ?,'Em aberto', ?, null, ?)";
+				String sql = "INSERT INTO adv_pendencia.tab_pedencia VALUES(null, ?,'Em aberto', ?, null, ?,?)";
 				stmt = con.prepareStatement(sql);
+				
 				
 				stmt.setString(1, filtro.getDescPendencia());
 				stmt.setString(2, filtro.getNomPendencia());
 				stmt.setInt(3, filtro.getPasta());
+				stmt.setDate(4,  (Date) filtro.getDataPrevPendencia());
 				
 				int retorno = stmt.executeUpdate();
 				if(retorno > 0){

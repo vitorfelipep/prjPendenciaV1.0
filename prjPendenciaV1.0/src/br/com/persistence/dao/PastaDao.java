@@ -22,7 +22,7 @@ public class PastaDao extends DaoMySql{
 					p.setDescPasta(rs.getString("descPasta"));
 					
 					listaPasta.add(p);
-					System.out.println(listaPasta);
+					//System.out.println(listaPasta);
 				}
 			
 				

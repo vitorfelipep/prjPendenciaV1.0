@@ -1,5 +1,5 @@
 package br.com.controle;
-
+ 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class FiltroMb implements Serializable{
 	public void cadastrar(){
 		try{
 			
-			System.out.println(filtro);
+			
 			if(filtro.getNomPendencia().isEmpty()){
 				FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage(null, new FacesMessage("Atenção!","Campo nome da pendência é obrigatório!"));
@@ -60,6 +60,7 @@ public class FiltroMb implements Serializable{
 				context.addMessage(null, new FacesMessage("Atenção!","Campo Pasta é obrigatório!"));
 			}
 			
+			System.out.println(filtro);
 			new PendenciaDao().cadastrarPendencia(filtro);//Efetua o cadastro... 
 			
 			this.filtro = new FiltroCadPendencia();
@@ -163,7 +164,8 @@ public class FiltroMb implements Serializable{
 		this.listaPendencia = listaPendencia;
 	}
 
-
+	
+	
 	public void addMessage() {
         String summary = value2 ? "Check sim" : "check não!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));

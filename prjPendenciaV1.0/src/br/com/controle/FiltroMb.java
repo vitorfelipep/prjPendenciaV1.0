@@ -42,7 +42,7 @@ public class FiltroMb implements Serializable{
 		listaPendencia = new ArrayList<Pendencia>();
 		
 	}
-	
+		
 	
 	//Método de cadastro
 	public void cadastrar(){

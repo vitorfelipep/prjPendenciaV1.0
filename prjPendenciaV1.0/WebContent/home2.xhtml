@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:s="http://jboss.com/products/seam/taglib">
+<h:head>
+<meta http-equiv="cache-control"   content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CP - Controle de Pendências</title>
+
+<!-- Icone -->
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon" />
+
+<!-- Calendário -->
+<script type="text/javascript" src="js/locale-primefaces.js" />
+
+<!-- Folha de estilo -->
+ <link rel="stylesheet" type="text/css" href="css/style.css" />
+ <script>
+ jQuery(document).ready(function(jQuery) {  
+	    // Chamada da funcao upperText(); ao carregar a pagina  
+	    upperText();  
+	});  
+	// Funcao que faz o texto ficar em uppercase  
+	function upperText() {  
+	    // Para tratar o colar  
+	    jQuery(".up").bind('paste', function(e) {  
+	        var el = jQuery(this);  
+	        setTimeout(function() {  
+	            var text = jQuery(el).val();  
+	            el.val(text.toUpperCase());  
+	        }, 100);  
+	    });  
+	  
+	    // Para tratar quando é digitado  
+	    jQuery(".up").keypress(function() {  
+	        var el = jQuery(this);  
+	        setTimeout(function() {  
+	            var text = jQuery(el).val();  
+	            el.val(text.toUpperCase());  
+	        }, 100);  
+	    });  
+	} 
+// 	//<![CDATA[
+// 	function setaFoco(elemento)  {  
+// 	    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;  
+// 	    if (keyCode == 13) {  
+// 	        var i;  
+// 	        for (i = 0; i < elemento.form.elements.length; i++)  
+// 	            if (elemento == elemento.form.elements[i])  
+// 	                break;  
+// 	        i = (i + 1) % elemento.form.elements.length;  
+// 	        elemento.form.elements[i].focus();  
+// 	        event.preventDefault();  
+// 	        return false;  
+// 	    }  
+// 	    return false;  
+// 	}  
+// 	//]]>
+ </script>
+ 
+</h:head>
+<h:body  style="background-image : URL(imagens/bckg.jpg);">
+
+<p:focus context="panelRelatorio"/>
+	<div class="ui-fluid">
+		<p:panel id="panelRelatorio" header="Cadastro de Pendências" toggleable="true" toggleOrientation="horizontal" style="width:60%;height:auto !important;">
+			<h:form id="formFiltro" >
+					
+				<!-- Componente das mensagens de validação do primeFaces -->
+					<p:growl id="msgLastname" showDetail="true" sticky="true" /> 
+					
+					<!-- Painel grid é a grid que comporta os campos do formulario -->
+					
+					
+		    		<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+		       
+					
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="pendencia" value="Nome Pendencia" />	
+						<p:inputText id="pendencia"  value="#{filtroMb.filtro.nomPendencia}" maxlength="25"  />
+						
+		
+						
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Descrição da pendência:" />	
+						<p:inputText id="descPend"  value="#{filtroMb.filtro.descPendencia}" maxlength="150"  />
+						
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="advanced" value="Pasta:" />	
+						<p:selectOneMenu id="advanced" value="#{filtroMb.filtro.pasta}"  >
+					          	<f:selectItem itemLabel="Selecione" itemValue="" />
+					            <f:selectItems value="#{filtroMb.listaPasta}" var="v" itemLabel="#{v.descPasta}" itemValue="#{v.idPasta}" />
+					     </p:selectOneMenu>
+						
+				        
+				        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="positivo" value="Há extensão?" /><br/>
+					        
+					        <h:outputText for="negativo" value="Sim: " />
+					        <p:selectBooleanCheckbox id="negativo" value="#{filtroMb.value2}">
+					            <p:ajax update="msgLastname" listener="#{filtroMb.addMessage}" />
+					        </p:selectBooleanCheckbox>
+				        
+				        <br/>
+				        <div id="extensao">
+					        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Extensão:" />	
+							 <p:inputTextarea rows="6" cols="33" value="#{filtroMb.filtro.extensao}" />
+				        </div>
+
+					<br/>
+					
+		   		</p:panelGrid>
+		   		<p:commandButton value="Cadastrar" id="btnProcessar" action="#{filtroMb.cadastrar}" ajax="true" update="formFiltro" resetValues="true" />
+				
+						
+				<h:message id="msgRelatorio" for="msgRelatorio" />
+			</h:form>
+				
+			<!-- Carregando -->
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+			 
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+			    <p:graphicImage value="imagens/carregando.gif"  />
+			</p:dialog>
+		
+		</p:panel>
+	</div>
+</h:body>
+</html>

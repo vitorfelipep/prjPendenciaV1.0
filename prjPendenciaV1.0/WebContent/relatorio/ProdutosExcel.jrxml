@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TesteRelatorio" pageWidth="920" pageHeight="595" orientation="Landscape" columnWidth="880" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="ee5e8778-b0c7-4086-a400-a179f8447d7f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codpro" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codder" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM sapiens2.VW_ULTCUST
+ WHERE CODPRO LIKE
+	(CASE WHEN $P{codpro} is null
+        	   THEN '%'
+            ELSE $P{codpro} END)
+      AND CODDER  LIKE  (CASE WHEN $P{codder} IS NULL
+             THEN '%'
+            ELSE $P{codder} END)
+ORDER BY PRODUTO]]>
+	</queryString>
+	<field name="CODPRO" class="java.lang.String"/>
+	<field name="PRODUTO" class="java.lang.String"/>
+	<field name="CODDER" class="java.lang.String"/>
+	<field name="DERIVACAO" class="java.lang.String"/>
+	<field name="UNIMED" class="java.lang.String"/>
+	<field name="PESLIQ" class="java.math.BigDecimal"/>
+	<field name="PESBRU" class="java.math.BigDecimal"/>
+	<field name="CODDEP" class="java.lang.String"/>
+	<field name="DATENT" class="java.sql.Timestamp"/>
+	<field name="TNSPRO" class="java.lang.String"/>
+	<field name="NFC_PREUEN" class="java.math.BigDecimal"/>
+	<field name="DER_PREUEN" class="java.math.BigDecimal"/>
+	<field name="DER_PREMED" class="java.math.BigDecimal"/>
+	<field name="CUSTO" class="java.math.BigDecimal"/>
+	<field name="TRIPIS" class="java.lang.String"/>
+	<field name="VLRICM" class="java.math.BigDecimal"/>
+	<field name="PERCIM" class="java.math.BigDecimal"/>
+	<field name="IPI" class="java.math.BigDecimal"/>
+	<field name="PIS" class="java.math.BigDecimal"/>
+	<field name="UF_DO_FORNECEDOR" class="java.lang.String"/>
+	<group name="Group1"/>
+	<group name="Group2"/>
+	<group name="Group3"/>
+	<group name="Group4"/>
+	<title>
+		<band height="23">
+			<staticText>
+				<reportElement x="741" y="1" width="46" height="20" uuid="8b33d67f-b23a-4c2c-9d1c-7c55d6f2c090"/>
+				<text><![CDATA[PERCIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="2" width="46" height="20" uuid="74eb3d91-18c6-4efd-9227-2645226d1f6f"/>
+				<text><![CDATA[CODDEP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="661" y="1" width="39" height="20" uuid="0a39f5dd-c0ba-459b-a7a8-34484428b5d4"/>
+				<text><![CDATA[TRIPIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="621" y="1" width="40" height="20" uuid="69d15450-89b9-417a-8faf-82d9bb6e96b3"/>
+				<text><![CDATA[CUSTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="577" y="2" width="44" height="20" uuid="111c7ef8-603d-4ef8-82fa-ad8a3d8d6489"/>
+				<text><![CDATA[DER_PREMED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="536" y="2" width="41" height="21" uuid="bddac633-684c-4d99-82ed-26cc1c5b578b"/>
+				<text><![CDATA[DER_PREUEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="494" y="2" width="42" height="20" uuid="081cfee0-5df6-4f84-853c-a359c671ef5b"/>
+				<text><![CDATA[NFC_PREUEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="2" width="46" height="20" uuid="9733d06f-a818-4935-9ed5-a1c7209fdf9d"/>
+				<text><![CDATA[TNSPRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="2" width="46" height="20" uuid="f1c2ff15-d614-40e0-a838-3a89fd759d16"/>
+				<text><![CDATA[DATENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="2" width="47" height="20" uuid="0dfb7c68-09d5-40a5-98a3-1f38122f157b"/>
+				<text><![CDATA[PESBRU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="2" width="43" height="20" uuid="8b26d2c6-4dbc-4c9f-ad7c-74d414e64704"/>
+				<text><![CDATA[UNIMED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="2" width="57" height="20" uuid="47757a90-0afa-42cd-b39f-7f7d79a0021c"/>
+				<text><![CDATA[CODPRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="2" width="46" height="20" uuid="83cbaaa9-9b56-4721-a2c6-7d44095b3310"/>
+				<text><![CDATA[PESLIQ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="700" y="1" width="41" height="20" uuid="29f22ee2-fb27-4012-90e4-e51417a12805"/>
+				<text><![CDATA[VLRICM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="2" width="55" height="20" uuid="46a63fa1-7ed2-4b03-ac04-9e7c78e18a5a"/>
+				<text><![CDATA[PRODUTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="2" width="47" height="20" uuid="80679941-e7ab-4813-959e-e690fe0e8a74"/>
+				<text><![CDATA[CODDER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="825" y="2" width="55" height="20" uuid="e41e7980-cda2-4fdb-bf9c-8d471a7248ec"/>
+				<text><![CDATA[UF_DO_FORNECEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="805" y="1" width="20" height="20" uuid="11ea4417-36cc-4b31-a1f1-b34afbb072fa"/>
+				<text><![CDATA[PIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="787" y="1" width="18" height="20" uuid="82733458-abd9-454f-9cc2-8becabc2a757"/>
+				<text><![CDATA[IPI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="2" width="60" height="20" uuid="a1c84aff-cd15-4c2c-b986-ceaed31697f1"/>
+				<text><![CDATA[DERIVACAO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="1" y="0" width="57" height="20" uuid="83a1ee4c-d61b-4e35-ae85-45a6f74b8021"/>
+				<textFieldExpression><![CDATA[$F{CODPRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="0" width="55" height="20" uuid="52806c5d-ab64-4ed7-aa6a-83418ab3125d"/>
+				<textFieldExpression><![CDATA[$F{PRODUTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="47" height="20" uuid="9c072ac4-ae07-4acc-94f1-961e4709fa0e"/>
+				<textFieldExpression><![CDATA[$F{CODDER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="60" height="20" uuid="e00b0389-a47e-4011-8210-e05a3cdeacdf"/>
+				<textFieldExpression><![CDATA[$F{DERIVACAO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="43" height="20" uuid="88f8ffd1-452b-4f06-85a0-120014b3e033"/>
+				<textFieldExpression><![CDATA[$F{UNIMED}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="0" width="46" height="20" uuid="8b1f66e5-2436-47a4-9a12-2e52ea1bb836"/>
+				<textFieldExpression><![CDATA[$F{PESLIQ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="0" width="47" height="20" uuid="9a2a0278-571b-4648-8c96-9b5feab1f16f"/>
+				<textFieldExpression><![CDATA[$F{PESBRU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="0" width="46" height="20" uuid="c3dbc381-3340-4c0d-94b7-37f78a48f1a8"/>
+				<textFieldExpression><![CDATA[$F{CODDEP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="0" width="46" height="20" uuid="446d4902-fe98-4cd4-b317-1695c2b87b14"/>
+				<textFieldExpression><![CDATA[$F{DATENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="46" height="20" uuid="5d5c0458-ce3f-446a-b544-999608a2b2de"/>
+				<textFieldExpression><![CDATA[$F{TNSPRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="0" width="42" height="20" uuid="1e7bca2c-6a4a-47f4-a3d4-7f7f9592e9c9"/>
+				<textFieldExpression><![CDATA[$F{NFC_PREUEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="0" width="41" height="20" uuid="f89fc60b-7bd3-4952-9e17-fa2937e0955d"/>
+				<textFieldExpression><![CDATA[$F{DER_PREUEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="577" y="0" width="44" height="20" uuid="6e06121f-2950-44ec-a033-e24c301f4986"/>
+				<textFieldExpression><![CDATA[$F{DER_PREMED}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="621" y="0" width="40" height="20" uuid="3ce64286-268a-46a7-b8a7-df70dd4b2047"/>
+				<textFieldExpression><![CDATA[$F{CUSTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="661" y="0" width="39" height="20" uuid="72471ac2-7cb7-4e48-9cf2-7839689d982f"/>
+				<textFieldExpression><![CDATA[$F{TRIPIS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="700" y="0" width="41" height="20" uuid="6142a818-517b-48ce-ae2e-70102f45310c"/>
+				<textFieldExpression><![CDATA[$F{VLRICM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="741" y="0" width="46" height="20" uuid="bc8fd489-aab8-4486-bcbc-6c0084dc6466"/>
+				<textFieldExpression><![CDATA[$F{PERCIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="787" y="0" width="18" height="20" uuid="2984a1a0-86a1-4d62-9241-e50695f96a9f"/>
+				<textFieldExpression><![CDATA[$F{IPI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="805" y="0" width="19" height="20" uuid="38cacc48-9e07-4381-bbd7-63194a188bad"/>
+				<textFieldExpression><![CDATA[$F{PIS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="824" y="0" width="56" height="20" uuid="c75578b7-a86a-4f9f-a617-70b9f227e050"/>
+				<textFieldExpression><![CDATA[$F{UF_DO_FORNECEDOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

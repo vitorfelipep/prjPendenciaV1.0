@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:decorate template="index.xhtml" >
+	<ui:define name="centro">
+	<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
+	<p:focus context="panelRelatorio"/>
+	
+	<p:panel id="panelRelatorio" header="Fechamento de Pendências" toggleable="true" toggleOrientation="horizontal" style="height:auto !important;">
+	
+		<h:form id="formFechamentoPendencia" >
+				
+			<!-- Componente das mensagens de validação do primeFaces -->
+				<p:growl id="msgLastname" showDetail="true" sticky="true" /> 
+				
+				<!-- Painel grid é a grid que comporta os campos do formulario -->
+					<p:panelGrid columns="3" columnClasses="ui-grid-col-3,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+				
+					<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="pendenciaNome" value="Nome da Pendência:" />	
+					<p:inputText id="pendenciaNome"  value="#{filtroMb.pendencia.nomependencia}" maxlength="14"  readonly="true"/>
+					
+					<p:commandButton icon="ui-icon-search" type="button" onclick="PF('dlg2').show();" style="left:-85px;" />
+					
+					<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Descrição da pendência:" />
+					<p:inputText id="descPend"  value="#{filtroMb.pendencia.descPed}" maxlength="25" style="width:200px;" readonly="true" />
+					<br/>
+					
+					<h:outputLabel  style="font-family: Arial,SANS-SERIF;" for="pasta" value="Nome da Pasta:"/>
+					<p:inputText id="pasta"  value="#{filtroMb.pendencia.descPasta}"  maxlength="25" style="width:200px;" readonly="true"/>
+					
+					<br/>
+			        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="data" value="Data de geração:" />	
+					<p:inputText  value="#{filtroMb.pendencia.datEmiPend}"  id="data" maxlength="25" style="width:200px;" readonly="true"/>
+			        <br/>
+					<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Fechar Pendência?" />	
+					<p:selectOneMenu id="fimPendencia" value="#{filtroMb.pendencia.statusPed}"  >
+				          	<f:selectItem itemLabel="Selecione" itemValue="" />
+				            <f:selectItem  itemLabel="Em aberto" itemValue="Em aberto" />
+				            <f:selectItem  itemLabel="Fechado" itemValue="Fechado" />
+				     </p:selectOneMenu>
+					
+		   		</p:panelGrid>
+	   			<br/>
+				<br/>
+	   		<p:commandButton value="Fechar Pendencia" id="btnProcessar" action="#{filtroMb.fecharPendencia}" ajax="true" update="formFechamentoPendencia" resetValues="true" />
+			
+		   		
+		   		 
+	   		<!-- Modal com a tabela do banco -->
+	   		<p:dialog styleClass="modalBusca" header="Modal Dialog" widgetVar="dlg2" modal="true" showEffect="slide" resizable="false"  height="auto" width="600" >
+			   
+			    <h:outputText value="Pesquisar Pendencias" />
+			    
+					<p:panelGrid columns="3" styleClass="tabela">
+							
+							<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="proPesq" value="Nome:"></h:outputLabel>
+							<p:inputText id="proPesq"  value="#{filtroMb.pendencia.nomependencia}" maxlength="14" size="25"  styleClass="up"  rendered="true" />
+							 
+							
+							
+							<p:commandButton value="Buscar" update="abc" id="ajax" action="#{filtroMb.consultarPendencia}"  styleClass="ui-priority-primary"  >		
+								<p:ajax update="msgLastname"  />
+							</p:commandButton>
+					</p:panelGrid>
+				
+				<br/>
+			
+				<!-- Componente de scroll, têm que ser colocado aqui, antes da tabela. -->   
+	            <p:scrollPanel mode="native" styleClass="modalTabelaSelect" style="height:300px; overflow:auto;" >
+	            <!--criando minha tabela, incluido no value a lista de produto, definino um variavel de acesso para cada registro, para acessar um unico registro-->
+		            <p:dataTable id="abc" value="#{filtroMb.listaPendencia}" var="p" emptyMessage="Nenhum registro incluido." paginator="true" rows="10" >
+		                
+			                <!--Definindo o cabeçalho da Tabela-->
+			                <f:facet name="header">  
+			                    Lista de Pendências
+			                </f:facet>
+			                
+			                <!--Criando uma coluna para receber um determinando dado que tem em um objeto da nossa lista, nesse caso produtoLista-->
+			                
+			               	 <p:column headerText="Id Pendencia" style="text-align: center;">
+			                    <!--Aqui onde acesso o objetos e  apresentamos na tabela, e assim com os seguintes-->
+			                    <h:outputText id="codigoPendencia" value="#{p.idped}" />
+			                </p:column>
+			                
+			                 <p:column headerText="Nome Pendencia" style="text-align: center;">
+			                    <h:outputText id="nomePendencia" value="#{p.nomependencia} " />
+			                </p:column>
+			                
+			                <p:column headerText="Descrição Pendência" style="text-align: center;">
+			                    <h:outputText id="descricaoPendencia" value="#{p.descPed} " />
+			                </p:column>
+			                
+			                 <p:column headerText="Status Pendencia" style="text-align: center;">
+			                    <h:outputText id="statusPendencia" value="#{p.statusPed} " />
+			                </p:column>
+			                
+			                 <p:column headerText="Data pendencia" style="text-align: center;">
+			                    <h:outputText id="dataPend" value="#{p.datEmiPend} " />
+			                </p:column>
+			               
+			                <p:column headerText="" style="text-align: center;width:80px;">
+			                
+			                    <!--Abaixo o botão editar com uma Action para o metodo que ainda vou desenvolver-->
+			                    <p:commandButton id="btnSelecionar" actionListener="#{filtroMb.consultarPendencia}" update="pendenciaNome" oncomplete="PF('dlg2').hide();" value="Selecionar" title="Selecionar produto" ajax="false" style="width:75px;font-size:10px;" >
+			                        <!-- Abaixo temos o setPropertyActionListener que é utilizado para pegar o objeto produto e setar no objeto listaProduto e colocar no campo que eu especifico.-->
+			                        <f:setPropertyActionListener value="#{p}" target="#{filtroMb.pendencia}" /> 
+			                   		
+			                    </p:commandButton>
+			                    
+			                </p:column>
+		                
+		                
+	            	</p:dataTable>
+	            </p:scrollPanel> 
+			</p:dialog> 
+					
+			<h:message id="msgRelatorio" for="msgRelatorio" />
+		</h:form>
+			
+		<!-- Carregando -->
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		 
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage value="imagens/carregando.gif"  />
+		</p:dialog>
+	
+	</p:panel>
+	</div>
+	
+	</ui:define>
+</ui:decorate>
+</html>

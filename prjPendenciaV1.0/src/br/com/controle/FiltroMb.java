@@ -35,7 +35,7 @@ public class FiltroMb implements Serializable{
     
    
 	public FiltroMb() {
-		
+			
 		filtro = new FiltroCadPendencia();
 		pendencia = new Pendencia();
 		listaPasta =  new ArrayList<Pasta>();

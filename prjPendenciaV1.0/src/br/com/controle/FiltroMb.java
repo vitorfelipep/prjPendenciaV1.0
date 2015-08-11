@@ -27,6 +27,7 @@ public class FiltroMb implements Serializable{
 	
 	private boolean value1;  
     private boolean value2;
+    private boolean mostrar;
     private FiltroCadPendencia filtro;
     private List<Pasta> listaPasta;
     private Pendencia pendencia;
@@ -155,7 +156,17 @@ public class FiltroMb implements Serializable{
     
     
      
-    public List<Pendencia> getListaPendencia() {
+    public boolean isMostrar() {
+		return mostrar;
+	}
+
+
+	public void setMostrar(boolean mostrar) {
+		this.mostrar = mostrar;
+	}
+
+
+	public List<Pendencia> getListaPendencia() {
 		return listaPendencia;
 	}
 
@@ -169,6 +180,16 @@ public class FiltroMb implements Serializable{
 	public void addMessage() {
         String summary = value2 ? "Check sim" : "check não!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
+         
+        
+        	if(!value2 == false){  
+        	    mostrar = true;  
+        	    System.out.println(mostrar);
+        	} else {  
+        	   mostrar = false;
+        	   System.out.println(mostrar);
+        	}  
+        	 
     }
 
 

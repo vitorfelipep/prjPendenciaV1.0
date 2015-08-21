@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	
+	<ui:decorate template="index.xhtml" >
+	<ui:define name="centro">
+	<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
+	<p:focus context="panelConsulta"/>
+	
+	<p:panel id="panelConsulta" header="Consulta de Pendências" toggleable="true" toggleOrientation="horizontal" >
+	
+		<h:form id="formConsultaPendencia" >
+				
+			<!-- Componente das mensagens de validação do primeFaces -->
+				<p:growl id="msgLastname" showDetail="true" sticky="true" /> 
+				
+				<!-- Painel grid é a grid que comporta os campos do formulario da consulta -->
+					<p:panelGrid columns="4" columnClasses="ui-grid-col-4,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
+					
+					<h:outputLabel style="font-family: Arial,SANS-SERIF;margin-left:90px;" for="descPend" value="Tipo de situação:" />	
+					<p:selectOneMenu id="fimPendencia" value="#{filtroMb.filtroBusca}" style="margin-left:-5px;">
+				          	<f:selectItem itemLabel="Selecione" itemValue="" />
+				          	<f:selectItem  itemLabel="Todas as pendências" itemValue="tudo" />
+				            <f:selectItem  itemLabel="Pendências em aberto" itemValue="Em aberto" />
+				            <f:selectItem  itemLabel="Pendências Fechadas" itemValue="Fechado" />
+				     </p:selectOneMenu>
+					
+					
+					
+					<h:outputLabel style="font-family: Arial,SANS-SERIF;width:200px;margin-left:-205px;" for="descPend" value="Nome da pendência:" />
+					<p:inputText id="descPend"  value="#{filtroMb.filtro.nomPendencia}" maxlength="200" style="width:250px;margin-left:-200px;" />
+						
+						<p:outputLabel for="effect" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data de previsão Pendência:" />
+        				<p:calendar id="effect" value="#{filtroMb.filtro.dataPrevPendencia}" style="width:250px;margin-left:-50px;" effect="fold" />
+					
+					<p:commandButton  icon="ui-icon-search"  value="Consultar" id="btnProcessar" action="#{filtroMb.fecharPendencia}" ajax="true" update="formConsultaPendencia" resetValues="true" style="margin-left:-65px;"/>
+
+
+		   		</p:panelGrid>
+	   		</h:form>	
+	  </p:panel>		
+	  </div>		   
+				
+	<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
+	 <p:panel id="panelConsulta2" header="Consulta de Pendências" toggleable="true" toggleOrientation="horizontal" style="height:auto !important;">
+		<h:form id="formTabelaConsulta">
+			
+				<!-- Componente de scroll, têm que ser colocado aqui, antes da tabela. -->   
+	            <p:scrollPanel mode="native" styleClass="modalTabelaSelect" style="height:300px; overflow:auto;" >
+	            <!--criando minha tabela, incluido no value a lista de produto, definino um variavel de acesso para cada registro, para acessar um unico registro-->
+		            <p:dataTable id="abc" value="#{filtroMb.listaPendencia}" var="p" emptyMessage="Nenhum registro incluido." paginator="true" rows="10" style="width:100%;	">
+		                
+			                <!--Definindo o cabeçalho da Tabela-->
+			                <f:facet name="header">  
+			                    Lista de Pendências
+			                </f:facet>
+			                
+			                <!--Criando uma coluna para receber um determinando dado que tem em um objeto da nossa lista, nesse caso produtoLista-->
+			                
+			               	 <p:column headerText="Id Pendencia" style="text-align: center;">
+			                    <!--Aqui onde acesso o objetos e  apresentamos na tabela, e assim com os seguintes-->
+			                    <h:outputText id="codigoPendencia" value="#{p.idped}" />
+			                </p:column>
+			                
+			                 <p:column headerText="Nome Pendencia" style="text-align: center;">
+			                    <h:outputText id="nomePendencia" value="#{p.nomependencia} " />
+			                </p:column>
+			                
+			                <p:column headerText="Descrição Pendência" style="text-align: center;">
+			                    <h:outputText id="descricaoPendencia" value="#{p.descPed} " />
+			                </p:column>
+			                
+			                 <p:column headerText="Status Pendencia" style="text-align: center;">
+			                    <h:outputText id="statusPendencia" value="#{p.statusPed} " />
+			                </p:column>
+			                
+			                 <p:column headerText="Data pendencia" style="text-align: center;">
+			                    <h:outputText id="dataPend" value="#{p.datEmiPend} " />
+			                </p:column>
+			               
+			                <p:column headerText="" style="text-align: center;width:80px;">
+			              
+			                </p:column>
+		                
+		                
+	            	</p:dataTable>
+	            </p:scrollPanel> 
+		
+			<h:message id="msgRelatorio" for="msgRelatorio" />
+		</h:form>
+			
+		<!-- Carregando -->
+		<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+		 
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    <p:graphicImage value="imagens/carregando.gif"  />
+		</p:dialog>
+	
+	</p:panel>
+	</div>
+	
+	</ui:define>
+</ui:decorate>
+	
+</html>

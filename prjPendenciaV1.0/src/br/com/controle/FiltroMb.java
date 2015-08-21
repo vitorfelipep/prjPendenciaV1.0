@@ -28,6 +28,7 @@ public class FiltroMb implements Serializable{
 	private boolean value1;  
     private boolean value2;
     private boolean mostrar;
+    private String filtroBusca;
     private FiltroCadPendencia filtro;
     private List<Pasta> listaPasta;
     private Pendencia pendencia;
@@ -41,6 +42,7 @@ public class FiltroMb implements Serializable{
 		pendencia = new Pendencia();
 		listaPasta =  new ArrayList<Pasta>();
 		listaPendencia = new ArrayList<Pendencia>();
+		
 		
 	}
 		
@@ -113,8 +115,6 @@ public class FiltroMb implements Serializable{
    
 	public void setListaPasta(List<Pasta> listaPasta) {
 		
-		
-		
 		this.listaPasta = listaPasta;
 		
 	}
@@ -156,7 +156,7 @@ public class FiltroMb implements Serializable{
     
     
      
-    public boolean isMostrar() {
+    public boolean getMostrar() {
 		return mostrar;
 	}
 
@@ -191,6 +191,16 @@ public class FiltroMb implements Serializable{
         	}  
         	 
     }
+
+	
+	public String getFiltroBusca() {
+		return filtroBusca;
+	}
+
+
+	public void setFiltroBusca(String filtroBusca) {
+		this.filtroBusca = filtroBusca;
+	}
 
 
 	public Pendencia getPendencia() {

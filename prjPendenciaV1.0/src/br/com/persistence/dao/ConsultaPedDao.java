@@ -3,9 +3,10 @@ package br.com.persistence.dao;
 import java.util.List;
 
 import br.com.model.ConsultaPedModel;
+import br.com.model.FiltroBusca;
 
 public class ConsultaPedDao extends DaoMySql{
-	public List<ConsultaPedModel> consultaPendencia(){
+	public List<ConsultaPedModel> consultaPendencia(FiltroBusca fb){
 		try{
 			open();
 				stmt = con.prepareStatement("SELECT tbped.idPed, "+

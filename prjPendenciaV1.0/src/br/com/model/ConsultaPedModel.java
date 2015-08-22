@@ -3,6 +3,7 @@ package br.com.model;
 import java.util.Date;
 
 public class ConsultaPedModel {
+	
 	private int idPed;
 	private String nomePendencia;
 	private String statusPendencia;

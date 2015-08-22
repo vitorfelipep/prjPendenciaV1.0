@@ -21,23 +21,28 @@
 				<!-- Painel grid é a grid que comporta os campos do formulario da consulta -->
 					<p:panelGrid columns="4" columnClasses="ui-grid-col-4,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
 					
-					<h:outputLabel style="font-family: Arial,SANS-SERIF;margin-left:90px;" for="descPend" value="Tipo de situação:" />	
-					<p:selectOneMenu id="fimPendencia" value="#{filtroMb.filtroBusca}" style="margin-left:-5px;">
-				          	<f:selectItem itemLabel="Selecione" itemValue="" />
-				          	<f:selectItem  itemLabel="Todas as pendências" itemValue="tudo" />
-				            <f:selectItem  itemLabel="Pendências em aberto" itemValue="Em aberto" />
-				            <f:selectItem  itemLabel="Pendências Fechadas" itemValue="Fechado" />
-				     </p:selectOneMenu>
+						<p:outputLabel for="dataIni" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data Inicial:" />
+        				<p:calendar id="dataIni" value="#{filtroBuscaMb.filtroBusca.dataIni}" style="width:250px;" effect="fold" />
+        				
+        				<p:outputLabel for="dataFim" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data Final:" />
+        				<p:calendar id="dataFim" value="#{filtroBuscaMb.filtroBusca.dataFim}" style="width:250px;" effect="fold" />
 					
-					
-					
-					<h:outputLabel style="font-family: Arial,SANS-SERIF;width:200px;margin-left:-205px;" for="descPend" value="Nome da pendência:" />
-					<p:inputText id="descPend"  value="#{filtroMb.filtro.nomPendencia}" maxlength="200" style="width:250px;margin-left:-200px;" />
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Tipo de situação:" />	
+						<p:selectOneMenu id="fimPendencia" value="#{filtroBuscaMb.filtroBusca.tipoBusca}">
+					          	<f:selectItem itemLabel="Selecione" itemValue="" />
+					          	<f:selectItem  itemLabel="Todas as pendências" itemValue="1" />
+					            <f:selectItem  itemLabel="Pendências em aberto" itemValue="2" />
+					            <f:selectItem  itemLabel="Pendências Fechadas" itemValue="3" />
+					     </p:selectOneMenu>
 						
-						<p:outputLabel for="effect" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data de previsão Pendência:" />
-        				<p:calendar id="effect" value="#{filtroMb.filtro.dataPrevPendencia}" style="width:250px;margin-left:-50px;" effect="fold" />
+						
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;width:200px;" for="descPend" value="Nome da pendência:" />
+						<p:inputText id="descPend"  value="#{filtroBuscaMb.filtroBusca.nomPendencia}" maxlength="200" style="width:250px;" />
+							
+						
 					
-					<p:commandButton  icon="ui-icon-search"  value="Consultar" id="btnProcessar" action="#{filtroMb.fecharPendencia}" ajax="true" update="formConsultaPendencia" resetValues="true" style="margin-left:-65px;"/>
+					
+					<p:commandButton  icon="ui-icon-search"  value="Consultar" id="btnProcessar" action="#{filtroBuscaMb.buscarPendencias}" ajax="true" update="formConsultaPendencia" resetValues="true" />
 
 
 		   		</p:panelGrid>

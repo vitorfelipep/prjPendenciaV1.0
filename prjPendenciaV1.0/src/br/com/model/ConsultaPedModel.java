@@ -1,18 +1,19 @@
 package br.com.model;
 
-import java.util.Date;
+
 
 public class ConsultaPedModel {
 	
 	private int idPed;
 	private String nomePendencia;
 	private String statusPendencia;
-	private int idPasta;
 	private String descPasta;
-	private Date dataEmisao;
-	private Date dataFechamento;
-	private int idExtensao;
+	private String dataEmisao;
+	private String dataFechamento;
 	private String descExtensao;
+	private int idPasta;
+	private String obsExtensao;
+	
 	
 	public ConsultaPedModel() {
 		// TODO Auto-generated constructor stub
@@ -58,28 +59,28 @@ public class ConsultaPedModel {
 		this.descPasta = descPasta;
 	}
 
-	public Date getDataEmisao() {
+	public String getDataEmisao() {
 		return dataEmisao;
 	}
 
-	public void setDataEmisao(Date dataEmisao) {
+	public void setDataEmisao(String dataEmisao) {
 		this.dataEmisao = dataEmisao;
 	}
 
-	public Date getDataFechamento() {
+	public String getDataFechamento() {
 		return dataFechamento;
 	}
 
-	public void setDataFechamento(Date dataFechamento) {
+	public void setDataFechamento(String dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
 
-	public int getIdExtensao() {
-		return idExtensao;
+	public String getObsExtensao() {
+		return obsExtensao;
 	}
 
-	public void setIdExtensao(int idExtensao) {
-		this.idExtensao = idExtensao;
+	public void setObsExtensao(String obsExtensao) {
+		this.obsExtensao = obsExtensao;
 	}
 
 	public String getDescExtensao() {
@@ -94,11 +95,10 @@ public class ConsultaPedModel {
 	public String toString() {
 		return "ConsultaPedModel [idPed=" + idPed + ", nomePendencia="
 				+ nomePendencia + ", statusPendencia=" + statusPendencia
-				+ ", idPasta=" + idPasta + ", descPasta=" + descPasta
-				+ ", dataEmisao=" + dataEmisao + ", dataFechamento="
-				+ dataFechamento + ", idExtensao=" + idExtensao
-				+ ", descExtensao=" + descExtensao + "]";
+				+ ", descPasta=" + descPasta + ", dataEmisao=" + dataEmisao
+				+ ", dataFechamento=" + dataFechamento + ", descExtensao="
+				+ descExtensao + ", idPasta=" + idPasta + ", obsExtensao="
+				+ obsExtensao + "]";
 	}
-	
 	
 }

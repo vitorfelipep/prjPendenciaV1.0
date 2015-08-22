@@ -3,7 +3,8 @@ package br.com.model;
 import java.util.Date;
 
 public class FiltroBusca {
-	private int tipoBusca;
+	
+	private String tipoBusca;
 	private String nomPendencia;
 	private Date dataIni;
 	private Date dataFim;
@@ -13,10 +14,10 @@ public class FiltroBusca {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public int getTipoBusca() {
+	public String getTipoBusca() {
 		return tipoBusca;
 	}
-	public void setTipoBusca(int tipoBusca) {
+	public void setTipoBusca(String tipoBusca) {
 		this.tipoBusca = tipoBusca;
 	}
 	public String getNomPendencia() {

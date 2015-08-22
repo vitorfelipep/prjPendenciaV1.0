@@ -30,19 +30,18 @@
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Tipo de situação:" />	
 						<p:selectOneMenu id="fimPendencia" value="#{filtroBuscaMb.filtroBusca.tipoBusca}">
 					          	<f:selectItem itemLabel="Selecione" itemValue="" />
-					          	<f:selectItem  itemLabel="Todas as pendências" itemValue="1" />
-					            <f:selectItem  itemLabel="Pendências em aberto" itemValue="2" />
-					            <f:selectItem  itemLabel="Pendências Fechadas" itemValue="3" />
+					          	<f:selectItem  itemLabel="Todas as pendências" itemValue="" />
+					            <f:selectItem  itemLabel="Pendências em aberto" itemValue="Em aberto" />
+					            <f:selectItem  itemLabel="Pendências Fechadas" itemValue="Fechado" />
 					     </p:selectOneMenu>
 						
 						
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;width:200px;" for="descPend" value="Nome da pendência:" />
 						<p:inputText id="descPend"  value="#{filtroBuscaMb.filtroBusca.nomPendencia}" maxlength="200" style="width:250px;" />
 							
-						
-					
-					
-					<p:commandButton  icon="ui-icon-search"  value="Consultar" id="btnProcessar" action="#{filtroBuscaMb.buscarPendencias}" ajax="true" update="formConsultaPendencia" resetValues="true" />
+						<p:commandButton  icon="ui-icon-search"  value="Consultar" id="btnProcessar" action="#{filtroBuscaMb.buscarPendencias}" ajax="true" update="formConsultaPendencia, :formTabelaConsulta" resetValues="true" >
+							<p:ajax update="msgLastname"  />
+						</p:commandButton>
 
 
 		   		</p:panelGrid>
@@ -57,45 +56,93 @@
 				<!-- Componente de scroll, têm que ser colocado aqui, antes da tabela. -->   
 	            <p:scrollPanel mode="native" styleClass="modalTabelaSelect" style="height:300px; overflow:auto;" >
 	            <!--criando minha tabela, incluido no value a lista de produto, definino um variavel de acesso para cada registro, para acessar um unico registro-->
-		            <p:dataTable id="abc" value="#{filtroMb.listaPendencia}" var="p" emptyMessage="Nenhum registro incluido." paginator="true" rows="10" style="width:100%;	">
+		            <p:dataTable id="abc" value="#{filtroBuscaMb.listaConsulta}" var="p" emptyMessage="Nenhum registro incluido."  paginator="true" rows="10" style="width:100%;	">
 		                
 			                <!--Definindo o cabeçalho da Tabela-->
 			                <f:facet name="header">  
-			                    Lista de Pendências
+			                    Pendências
 			                </f:facet>
 			                
 			                <!--Criando uma coluna para receber um determinando dado que tem em um objeto da nossa lista, nesse caso produtoLista-->
 			                
 			               	 <p:column headerText="Id Pendencia" style="text-align: center;">
 			                    <!--Aqui onde acesso o objetos e  apresentamos na tabela, e assim com os seguintes-->
-			                    <h:outputText id="codigoPendencia" value="#{p.idped}" />
+			                    <h:outputText id="codigoPendencia" value="#{p.idPed}" />
 			                </p:column>
 			                
 			                 <p:column headerText="Nome Pendencia" style="text-align: center;">
-			                    <h:outputText id="nomePendencia" value="#{p.nomependencia} " />
+			                    <h:outputText id="nomePendencia" value="#{p.nomePendencia} " />
 			                </p:column>
 			                
 			                <p:column headerText="Descrição Pendência" style="text-align: center;">
-			                    <h:outputText id="descricaoPendencia" value="#{p.descPed} " />
+			                    <h:outputText id="pendenciaStatus" value="#{p.statusPendencia} " />
 			                </p:column>
 			                
 			                 <p:column headerText="Status Pendencia" style="text-align: center;">
-			                    <h:outputText id="statusPendencia" value="#{p.statusPed} " />
+			                    <h:outputText id="pastaDesc" value="#{p.descPasta} " />
 			                </p:column>
 			                
-			                 <p:column headerText="Data pendencia" style="text-align: center;">
-			                    <h:outputText id="dataPend" value="#{p.datEmiPend} " />
+			                <p:column headerText="Data emissão" style="text-align: center;">
+			                    <h:outputText id="datEmisao" value="#{p.dataEmisao} " />
+			                </p:column>
+			                
+			                <p:column headerText="Previsão de fechamento" style="text-align: center;">
+			                    <h:outputText id="datFcehamento" value="#{p.dataFechamento} " />
+			                </p:column>
+			                
+			                <p:column headerText="desc. Extensao" style="text-align: center;">
+			                    <h:outputText id="Desc_extensao" value="#{p.descExtensao} " />
+			                </p:column>
+			                
+			                <p:column headerText="id Pasta" style="text-align: center;">
+			                    <h:outputText id="idpasta" value="#{p.idPasta} " />
+			                </p:column>
+			                
+			                <p:column headerText="obsExtensao" style="text-align: center;">
+			                    <h:outputText id="extensao" value="#{p.obsExtensao} " />
 			                </p:column>
 			               
 			                <p:column headerText="" style="text-align: center;width:80px;">
-			              
+			              		<p:commandButton id="btAlterapend" icon="ui-icon-pencil" type="button" update=":form:painelAlteraPend"  onclick="PF('dlg2').show();"  >
+			              			<f:setPropertyActionListener value="#{p}" target="#{filtroBuscaMb.filtroAlteracao}"  for="btAlterapend"/>
+			              		</p:commandButton>
 			                </p:column>
 		                
 		                
 	            	</p:dataTable>
+	            	
+	            	
+	            	
+	            	
 	            </p:scrollPanel> 
 		
 			<h:message id="msgRelatorio" for="msgRelatorio" />
+			<p:dialog  id="caltpend" styleClass="modalBusca" header="Modal Dialog" widgetVar="dlg2" modal="true" showEffect="slide" resizable="false"  height="auto" width="600" >
+			   
+					   <f:facet name="header">
+							<h:outputText value="Dados da Pendência"></h:outputText>				   	
+					   </f:facet>
+					    
+							<p:panelGrid columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" id="painelAlteraPend" layout="grid" styleClass="ui-panelgrid-blank"  rendered="#{not empty filtroBuscaMb.listaConsulta}">
+									
+									<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="proPesq" value="Nome da Pendencia:"></h:outputLabel>
+									<p:inputText id="pendenciaNome"  value="#{filtroBuscaMb.filtroAlteracao.nomePendencia}" maxlength="14" size="25"  styleClass="up"  rendered="true" />
+									 
+									<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="proPesq" value="Status pendência:"></h:outputLabel>
+									<p:inputText id="pendStatus"  value="#{filtroBuscaMb.filtroAlteracao.statusPendencia}" maxlength="14" size="25"  styleClass="up"  rendered="true" />
+									 
+									
+									 <p:commandButton id="btnAlterar" actionListener="#{filtroBuscaMb.alterarPendenciaModal}" update="abc" oncomplete="PF('dlg2').hide();" value="Alterar" title="Alterar pendência" ajax="false" style="width:75px;font-size:10px;" >
+				                        <!-- Abaixo temos o setPropertyActionListener que é utilizado para pegar o objeto produto e setar no objeto listaProduto e colocar no campo que eu especifico.-->
+				                        <!-- <f:setPropertyActionListener value="#{p}" target="#{filtroBuscaMb.listaConsulta}" /> --> 
+				                   		
+				                    </p:commandButton>
+							</p:panelGrid>
+						
+						<br/>
+						 
+					</p:dialog> 
+			
 		</h:form>
 			
 		<!-- Carregando -->

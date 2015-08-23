@@ -6,15 +6,16 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
 
 import br.com.model.ConsultaPedModel;
 import br.com.model.FiltroBusca;
 import br.com.persistence.dao.ConsultaPedDao;
 
 @ManagedBean(name="filtroBuscaMb")
-@SessionScoped
+@ViewScoped
 public class FiltroBuscaMb implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -22,13 +23,13 @@ public class FiltroBuscaMb implements Serializable{
 	private ConsultaPedModel filtroAlteracao;
 	private List<ConsultaPedModel> listaConsulta;
 	
-	public FiltroBuscaMb() {
+	public FiltroBuscaMb() {//construtor
 		this.filtroBusca = new FiltroBusca();
 		this.filtroAlteracao = new ConsultaPedModel();
 		this.listaConsulta = new ArrayList<ConsultaPedModel>();
 	}
 	
-	public List<ConsultaPedModel> buscarPendencias(){
+	public List<ConsultaPedModel> buscarPendencias(){//Busca de pendencias
 		try{
 			System.out.println(filtroBusca);
 			//if(!filtroBusca.getTipoBusca().isEmpty()){
@@ -48,16 +49,10 @@ public class FiltroBuscaMb implements Serializable{
 		
 	}
 	
-	public ConsultaPedModel colocarValorPendencia(ConsultaPedModel p){
-		try{
-			filtroAlteracao = p;
-			filtroAlteracao.getNomePendencia();
-			System.out.println(filtroAlteracao);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public void prepararAlterarPend(ActionEvent actionEvent){
+//		filtroAlteracao = (ConsultaPedModel) listaConsulta;
+//    }
+ 
 	
 	public void alterarPendenciaModal(){
 		

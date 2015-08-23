@@ -35,7 +35,7 @@ public class FiltroMb implements Serializable{
     private Pasta pasta;
     private List<Pendencia> listaPendencia;
     
-   
+   //Metodo construtor
 	public FiltroMb() {
 			
 		filtro = new FiltroCadPendencia();
@@ -74,7 +74,7 @@ public class FiltroMb implements Serializable{
 		}
 	}
 	
-	
+	//metodo de fechar pendencias
 	public void fecharPendencia(){
 		
 		if(!pendencia.getStatusPed().equalsIgnoreCase("Em aberto")){
@@ -86,7 +86,7 @@ public class FiltroMb implements Serializable{
 			context.addMessage(null, new FacesMessage("Atenção!","Pendencia já está em aberto, para fechar selecione fechar!"));
 		}
 	}
-	
+	//Consulta de pendencias para fechamento de pendencias
 	public List<Pendencia> consultarPendencia(){
 		
 		try{
@@ -104,7 +104,7 @@ public class FiltroMb implements Serializable{
 	}
     
 	@PostConstruct
-	public void inicializarList(){
+	public void inicializarList(){//Este método constrói a lista de pendencia aberta
 		listaPasta = new PastaDao().getPasta();
 	}
     

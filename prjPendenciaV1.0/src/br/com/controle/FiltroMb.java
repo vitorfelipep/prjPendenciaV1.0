@@ -24,8 +24,7 @@ import br.com.persistence.dao.PendenciaDao;
 public class FiltroMb implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
-	private boolean value1;  
+	 
     private boolean value2;
     private boolean mostrar;
     private String filtroBusca;
@@ -107,6 +106,7 @@ public class FiltroMb implements Serializable{
 	public void inicializarList(){//Este método constrói a lista de pendencia aberta
 		listaPasta = new PastaDao().getPasta();
 	}
+	
     
     public List<Pasta> getListaPasta() {
 		return listaPasta;
@@ -138,25 +138,26 @@ public class FiltroMb implements Serializable{
 		this.filtro = filtro;
 	}
 
-	public boolean isValue1() {
-        return value1;
-    }
  
-    public void setValue1(boolean value1) {
-        this.value1 = value1;
-    }
- 
-    public boolean isValue2() {
-        return value2;
-    }
- 
-    public void setValue2(boolean value2) {
-        this.value2 = value2;
-    }
+   
     
     
      
-    public boolean getMostrar() {
+    public boolean isValue2() {
+    	System.out.println(value2);
+    	return value2;
+		
+	}
+
+
+	public void setValue2(boolean value2) {
+		System.out.println(value2);
+		this.value2 = value2;
+		
+	}
+
+
+	public boolean getMostrar() {
 		return mostrar;
 	}
 
@@ -181,9 +182,9 @@ public class FiltroMb implements Serializable{
         String summary = value2 ? "Check sim" : "check não!";
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
          
-        
+        	
         	if(!value2 == false){  
-        	    mostrar = true;  
+        	   mostrar = true;
         	    System.out.println(mostrar);
         	} else {  
         	   mostrar = false;

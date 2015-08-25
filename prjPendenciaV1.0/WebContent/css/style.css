@@ -6,18 +6,14 @@ body{
 }
 
 #panelRelatorio{
-	/* 	width:60%; */
-	/* 	height:200px; */
-	/* 	position:absolute; */
-	/* 	left: 50%; */
-	/* 	top:50%; */
-	/* 	margin-top:-100px; */
-	/* 	margin-left:-310 */
-	width:60%;
-	/*margin-top:10%;*/
-	margin-left:20%;
 	
+	width:60%;
+	margin-left:20%;
 		
+}
+
+.ui-grid-col-3{
+	width:56%;
 }
 
 #j_idt38{
@@ -29,13 +25,13 @@ body{
 }
 
 .ui-panelgrid-blank .cadPendend{
-	width:85%;
+	width:90%;
 }
 
 #produto{
 		width:75% !important;
 		display:block;
-		margin-left: -40px !important;
+		margin-left: -10px !important;
 }
 
 #formFiltro:j_idt54{
@@ -47,7 +43,7 @@ body{
 }
 
 #produto{
-	margin-left:-40px;
+	margin-left:0px;
 }
 #btnPesquisar{
 	left:-85px;px;
@@ -55,7 +51,7 @@ body{
 
 #advanced{
 	width:195px;
-	margin-left: -40px;
+	margin-left: -10px;
 }
 
 #iconBuscar{
@@ -129,8 +125,8 @@ body{
 		width:100% !important;
 	}
 	
-	#produto{
-	margin-left:-5px;
+	#pendencia{
+		margin-left:20px;
 	}
 	#btnPesquisar{
 		left:-5px;px;

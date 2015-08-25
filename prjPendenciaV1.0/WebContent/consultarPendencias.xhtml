@@ -103,7 +103,7 @@
 			                </p:column>
 			               
 			                <p:column headerText="" style="text-align: center;width:80px;">
-			              		<p:commandButton id="btAlterapend" icon="ui-icon-pencil" type="button"  value="#{}" update=":painelAlteraPend"    oncomplete="PF('dlg2').show();"  >
+			              		<p:commandButton id="btAlterapend" icon="ui-icon-pencil" type="button"  value="#{filtroBuscaMb.listaConsulta}" update=":painelAlteraPend"    oncomplete="PF('dlg2').show();"  >
 			              			<f:setPropertyActionListener value="#{p}" target="#{filtroBuscaMb.filtroAlteracao}"  for="btAlterapend"/>
 			              		</p:commandButton>
 			                </p:column>

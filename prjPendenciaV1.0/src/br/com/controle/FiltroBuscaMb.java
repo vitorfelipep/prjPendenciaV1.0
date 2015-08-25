@@ -12,9 +12,9 @@ import javax.faces.context.FacesContext;
 
 import br.com.model.ConsultaPedModel;
 import br.com.model.FiltroBusca;
-import br.com.persistence.dao.ConsultaPedDao;
+import br.com.persistence.dao.ConsultaPedDao; 
 
-@ManagedBean(name="filtroBuscaMb")
+@ManagedBean(name="filtroBuscaMb") 
 @ViewScoped
 public class FiltroBuscaMb implements Serializable{
 	
@@ -74,7 +74,7 @@ public class FiltroBuscaMb implements Serializable{
 	public void setFiltroBusca(FiltroBusca filtroBusca) {
 		this.filtroBusca = filtroBusca;
 	}
-
+ 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

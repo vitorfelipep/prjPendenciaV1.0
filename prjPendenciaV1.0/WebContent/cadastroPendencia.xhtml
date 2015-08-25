@@ -17,10 +17,10 @@
 					<p:growl id="msgLastname" showDetail="true" sticky="true" /> 
 					
 					<!-- Painel grid é a grid que comporta os campos do formulario -->
-		    		<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank cadPendend" >
+		    		<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank cadPendend" id="grade">
 		       
 					
-						<h:outputLabel style="font-family: Arial,SANS-SERIF;text-align:right !important;" for="pendencia" value="Nome Pendencia:" />	
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;text-align:right !important;width:20%;" for="pendencia" value="Nome Pendencia:" />	
 						<p:inputText id="pendencia"  value="#{filtroMb.filtro.nomPendencia}" maxlength="50" style="width:250px"  />
 						
 						
@@ -41,17 +41,17 @@
 					        
 					        <h:outputText for="negativo" value="Sim: " />
 					        <p:selectBooleanCheckbox id="negativo" value="#{filtroMb.value2}" >
-					            <p:ajax update="formFiltro:nomeExtensao" listener="#{filtroMb.addMessage}" />
+					            <p:ajax update="formFiltro:grade" listener="#{filtroMb.addMessage}" />
 					        </p:selectBooleanCheckbox>
 				        	
 				        	
 				        
 							
 					        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="nomeExtensao" value="Nome da Extensão:" />	
-							<p:inputText id="nomeExtensao"  value="#{filtroMb.filtro.nomeExtensao}" maxlength="25" style="width:200px;"   />
+							<p:inputText id="nomeExtensao"  value="#{filtroMb.filtro.nomeExtensao}"   maxlength="25" style="width:200px;"   rendered="#{filtroMb.mostrar}"  />
 	
 					        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descExt" value="Extensão:" />	
-							<p:inputTextarea rows="4" cols="33" value="#{filtroMb.filtro.extensao}" id="descExt"/>
+							<p:inputTextarea rows="4" cols="33" value="#{filtroMb.filtro.extensao}" rendered="#{filtroMb.mostrar}" id="descExt"/>
 							
 					<br/>
 					

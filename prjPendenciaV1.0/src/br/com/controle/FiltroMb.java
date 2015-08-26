@@ -179,10 +179,9 @@ public class FiltroMb implements Serializable{
 	
 	
 	public void addMessage() {
-        String summary = value2 ? "Check sim" : "check não!";
+        String summary = value2 ? "Com extensão" : "Sem extensão!"; 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
-         
-        	
+
         	if(!value2 == false){  
         	   mostrar = true;
         	    System.out.println(mostrar);

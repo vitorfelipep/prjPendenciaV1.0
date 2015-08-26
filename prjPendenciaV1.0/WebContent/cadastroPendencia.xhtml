@@ -41,7 +41,7 @@
 					        
 					        <h:outputText for="negativo" value="Sim: " />
 					        <p:selectBooleanCheckbox id="negativo" value="#{filtroMb.value2}" >
-					            <p:ajax update="formFiltro:grade" listener="#{filtroMb.addMessage}" />
+					            <p:ajax update=":formFiltro:grade, :formFiltro" listener="#{filtroMb.addMessage}" />
 					        </p:selectBooleanCheckbox>
 				        	
 				        	
@@ -56,10 +56,10 @@
 					<br/>
 					
 		   		</p:panelGrid>
-		   		<p:commandButton value="Cadastrar" id="btnProcessar" action="#{filtroMb.cadastrar}" ajax="true" update="formFiltro" resetValues="true" />
-				
-						
+		   		<p:panel >
+		   		<p:commandButton value="Cadastrar" id="btnProcessar" action="#{filtroMb.cadastrar}" ajax="true" update="formFiltro" resetValues="true" />	
 				<h:message id="msgRelatorio" for="msgRelatorio" />
+				</p:panel>
 			</h:form>
 				
 			<!-- Carregando -->

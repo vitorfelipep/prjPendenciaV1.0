@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<meta http-equiv="cache-control"   content="no-cache" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CP - Controle de Pendências</title>
+
+<!-- Icone -->
+<link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon" />
+
+<!-- Calendário -->
+<script type="text/javascript" src="js/locale-primefaces.js" />
+
+<!-- Folha de estilo -->
+ <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+ <script>
+ jQuery(document).ready(function(jQuery) {  
+	    // Chamada da funcao upperText(); ao carregar a pagina  
+	    upperText();  
+	});  
+	// Funcao que faz o texto ficar em uppercase  
+	function upperText() {  
+	    // Para tratar o colar  
+	    jQuery(".up").bind('paste', function(e) {  
+	        var el = jQuery(this);  
+	        setTimeout(function() {  
+	            var text = jQuery(el).val();  
+	            el.val(text.toUpperCase());  
+	        }, 100);  
+	    });  
+	  
+	    // Para tratar quando é digitado  
+	    jQuery(".up").keypress(function() {  
+	        var el = jQuery(this);  
+	        setTimeout(function() {  
+	            var text = jQuery(el).val();  
+	            el.val(text.toUpperCase());  
+	        }, 100);  
+	    });  
+	} 
+	
+
+
+
+
+// 	//<![CDATA[
+// 	function setaFoco(elemento)  {  
+// 	    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;  
+// 	    if (keyCode == 13) {  
+// 	        var i;  
+// 	        for (i = 0; i < elemento.form.elements.length; i++)  
+// 	            if (elemento == elemento.form.elements[i])  
+// 	                break;  
+// 	        i = (i + 1) % elemento.form.elements.length;  
+// 	        elemento.form.elements[i].focus();  
+// 	        event.preventDefault();  
+// 	        return false;  
+// 	    }  
+// 	    return false;  
+// 	}  
+// 	//]]>
+ </script>
+ 
+</h:head>
+<h:body  style="background-image : URL(imagens/bckg.jpg);">
+
+	<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
+	<h:form>  
+	    <p:growl id="messages"/>
+	 
+	    <p:menubar style="width:100%;">
+	        <p:submenu label="Inicio" icon="ui-icon-document">
+	            <p:menuitem value="Home" url="http://localhost:8080/prjPendenciaV1.0/index.jsf" />
+	            <p:separator />
+	            <p:menuitem value="Quit" url="#" />
+	        </p:submenu>
+	 
+	        <p:submenu label="Pendências" icon="ui-icon-document">
+	            <p:submenu label="Cadastro" icon="ui-icon-contact">
+	            	
+		                <p:menuitem value="Pendências" action="cadastroPendencia.xhtml?faces-redirect=true" />
+		          
+		            
+	            </p:submenu>
+	            <p:submenu label="Fechamento" icon="ui-icon-contact">
+		                <p:menuitem value="Pendências" action="fecharPendencia.xhtml?faces-redirect=true" />
+		        </p:submenu>
+	        </p:submenu>
+	 
+	        <p:submenu label="Pesquisar" icon="ui-icon-search">
+	            <p:menuitem value="Pendências" action="consultarPendencias.xhtml?faces-redirect=true" />
+	              <p:menuitem value="Pendências teste" action="consultaPendencia.xhtml?faces-redirect=true" />
+	            <p:submenu label="Search" icon="ui-icon-search">
+	                <p:submenu label="Text">
+	                    <p:menuitem value="Workspace" url="#" />
+	                </p:submenu>
+	                <p:menuitem value="File" url="#" />
+	            </p:submenu>
+	        </p:submenu>
+	 
+	        <p:submenu label="Actions" icon="ui-icon-gear">
+	            <p:submenu label="Ajax" icon="ui-icon-refresh">
+	                <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" update="messages"/>
+	                <p:menuitem value="Update" actionListener="#{menuView.update}" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
+	            </p:submenu>
+	            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
+	                <p:menuitem value="Delete" actionListener="#{menuView.delete}" icon="ui-icon-close" update="messages" ajax="false"/>
+	            </p:submenu>
+	        </p:submenu>
+	 
+	        <p:menuitem value="Quit" url="http://localhost:8080/prjPendenciaV1.0/index.jsf" icon="ui-icon-close" />
+	 
+	        <f:facet name="options">
+<!-- 	            <p:inputText style="margin-right:10px" placeholder="Search"/> -->
+	            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+	        </f:facet>
+	    </p:menubar>
+	</h:form>
+
+	
+	<div style="margin-top:30px;width:100%;border:none !important">
+		<p:layoutUnit position="center">
+			<ui:insert name="centro" >
+				
+				
+				
+			</ui:insert>
+		</p:layoutUnit>
+	</div>
+	</div>	
+	<!-- Carregando -->
+			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+			 
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+			    <p:graphicImage value="imagens/carregando.gif"  />
+			</p:dialog>
+	
+</h:body>
+</html>

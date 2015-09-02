@@ -1,0 +1,369 @@
+@media only screen and (min-width: 992px) { 
+body{
+	background-image : URL(imagens/bckg.jpg);
+	height:0 auto;
+	width:98%;
+}
+
+#panelRelatorio{
+	
+	width:60%;
+	margin-left:20%;
+		
+}
+
+ .ui-grid-col-2{
+	width: 26% !important;
+}
+
+.ui-grid-col-3{
+	width:56%;
+}
+
+#j_idt38{
+	border:none !important;
+}
+
+#j_idt38 > div{
+	border:none !important;
+}
+
+.ui-panelgrid-blank .cadPendend{
+	width:90%;
+}
+
+#produto{
+		width:75% !important;
+		display:block;
+		margin-left: -10px !important;
+}
+
+#formFiltro:j_idt54{
+	display:none;
+}
+
+#modal{
+	width:600px;
+}
+
+.
+
+.modalTabelaSelect{
+	width: 100%;
+}
+
+#produto{
+	margin-left:0px;
+}
+#btnPesquisar{
+	left:-85px;px;
+}
+
+#advanced{
+	width:195px;
+	margin-left: -10px;
+}
+
+#iconBuscar{
+	margin-left:-85px;
+}
+
+#ajax{
+	margin-left:-60px;
+}
+
+#proPesq{
+	text-transform:uppercase; 
+	margin-left:-42px;
+}
+
+#btnProcessar{
+	position: absolute;
+	margin-left: 90%;
+}
+
+#selectCodpro{
+	width: 75%;
+}
+
+
+.tabela{
+	  width: 100%;  
+}
+
+.tabela tr, .tabela td{
+ 	border: none !important;  
+}
+}
+@media (max-width: 800px) {
+	
+	body{
+		background-image : URL(imagens/bckg.jpg);
+		height:0 auto;
+		width:95%;
+	}
+	
+	#panelRelatorio{
+	
+		  width: 100%;
+		  margin-left:0px;
+	
+	}
+	
+}
+@media (max-width: 600px) {
+  	body{
+		background-image : URL(imagens/bckg.jpg);
+		height:0 auto;
+		width:95%;
+	}
+	
+	#panelRelatorio{
+	
+		  width: 100%;
+		  display:block;
+	
+	}
+	
+	.modalBusca
+	{
+		width:80% !important;
+	}
+	
+	.modalBuscaPendencia
+	{
+		width:100% !important;
+	}
+	
+	.modalTabelaSelect
+	{
+		width:100% !important;
+	}
+	
+	#pendencia{
+		margin-left:20px;
+	}
+	#btnPesquisar{
+		left:-5px;px;
+	}
+	
+	#advanced{
+		width:75%;
+		margin-left: -4px;
+	}
+	
+	#ajax{
+		margin-left:0px;
+	}
+
+	#proPesq{
+		text-transform:uppercase; 
+		margin-left:0px;
+	}
+	
+	input[type=text]{
+		width:75%;
+		display:block;
+	}
+	input[type=password]{
+		width:72%;
+		display:block;
+		margin-left:10px;
+	}
+	
+	#panelLogin{
+	
+	
+	/*top:50%;
+	left:50%;*/
+	width:75%;
+	margin-top:25%;
+	margin-left:15%;
+	display:block;
+	
+	
+	}
+	
+	/*id da tabela gerada pelo primeFaces*/
+	 #form:j_idt10
+	{
+		width:100%;
+	}
+	
+	.tabela{
+  	  margin-left: -15px;
+  	  display:block;
+	}
+	
+	#form:grid2{
+		display:block;
+	}
+	
+	.tabela {
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+  .tabela thead,
+  .tabela tbody,
+  .tabela th,
+  .tabela td,
+  .tabela tr {
+    display: block;
+    border: none !important; 
+  }
+  
+  .tabela td,
+  .tabela th {
+    height: 35px;
+  }
+  
+  .tabela thead {
+    float: left;
+  }
+  
+  .tabela tbody {
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  
+  .tabela tbody tr {
+    display: 
+    block;
+  }
+	#btnProcessar{
+/* 		position: absolute; */
+		margin-left: 45px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	
+	body{
+		background-image : URL(imagens/bckg.jpg);
+		height:0 auto;
+		width:95%;
+		}
+	
+	#panelRelatorio{
+	
+		  width: 100%;
+		 
+		  display:block;
+	
+	}
+	
+}
+
+@media screen and (max-width: 380px) and (orientation: landscape){
+	
+	 	body{
+		background-image : URL(imagens/bckg.jpg);
+		height:0 auto;
+		width:95%;
+		}
+	
+	#panelRelatorio{
+	
+		  width: 100%;
+		  /*float: left;
+		  margin: 150px 0px;
+		  padding: 5px;
+		  height: o auto;
+		  border: 1px solid black;*/
+		  display:block;
+	
+	}
+	
+	#ajax{
+		margin-left:0px;
+	}
+
+	#proPesq{
+		text-transform:uppercase; 
+		margin-left:0px;
+	}
+	
+	
+	input[type=text]{
+		width:75%;
+		display:block;
+	}
+	input[type=password]{
+		width:75%;
+		display:block;
+		/*margin-left:10px;*/
+	}
+	
+	#panelLogin
+	{
+	
+	
+	/*top:50%;
+	left:50%;*/
+	width:100%;
+	/*margin-top:25%;
+	margin-left:15%;*/
+	/*display:block;*/
+	
+	
+	}
+	/*id da tabela gerada pelo primeFaces*/
+	 #form:j_idt10
+	{
+		width:100%;
+	}
+	
+	.tabela{
+  	  /*margin-left: -15px;*/
+  	  display:block;
+	}
+	
+	
+	
+	.tabela {
+    display: block;
+   /* position: relative;*/
+    width: 100%;
+  }
+
+  .tabela thead,
+  .tabela tbody,
+  .tabela th,
+  .tabela td,
+  .tabela tr {
+    display: block;
+    border: none !important; 
+  }
+  
+  .tabela td,
+  .tabela th {
+    height: 35px;
+  }
+  
+  .tabela thead {
+    /*float: left;*/
+  }
+  
+  .tabela tbody {
+    width: auto;
+   	position: relative;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  
+  .tabela tbody tr {
+    display: 
+    block;
+  }
+	#btnProcessar{
+/* 		position: absolute; */
+		margin-left: 45px;
+	}
+	
+}

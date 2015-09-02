@@ -1,3 +1,0 @@
-JSF 2.2
-PrimeFaces 5.2
-Oracle

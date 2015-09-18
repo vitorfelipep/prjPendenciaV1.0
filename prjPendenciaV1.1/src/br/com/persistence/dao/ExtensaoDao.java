@@ -34,11 +34,11 @@ public class ExtensaoDao extends DaoMysql{
 			open();
 			System.out.println(filtro.getNomeExtensao());	
 			
-				if(filtro.getNomeExtensao() == null){
+				if(filtro.getNomeExtensao() == "--"){
 					
-					System.out.println("NÃ£o houve extensÃ£o, cadastrado apenas a pendencia!");
+					System.out.println("Não houve extensão, cadastrado apenas a pendencia!");
 					FacesContext context = FacesContext.getCurrentInstance();
-					context.addMessage(null, new FacesMessage("AtenÃ§Ã£o","Dados cadastrados com sucesso, mais nÃ£o houve extensÃ£o vinculada a pendencia!"));
+					context.addMessage(null, new FacesMessage("Atençãoo","Dados cadastrados com sucesso, mais não houve extensão vinculada a pendencia!"));
 					
 					
 				}else{
@@ -52,10 +52,10 @@ public class ExtensaoDao extends DaoMysql{
 					if(cadastro > 0){
 						FacesContext context = FacesContext.getCurrentInstance();
 						context.addMessage(null, new FacesMessage("Sucesso!","Dados cadastrados com sucesso!"));
-						System.out.println("-->Dados de ExtensÃ£o cadastrados com sucesso!");
+						System.out.println("-->Dados de Extensão cadastrados com sucesso!");
 					}else{
 						FacesContext context = FacesContext.getCurrentInstance();
-						context.addMessage(null, new FacesMessage("Erro!","NÃ£o foi possivel cadastrar dados da pendÃªncia"));
+						context.addMessage(null, new FacesMessage("Erro!","Não foi possivel cadastrar dados da pendência"));
 						
 						System.out.println("-->Erro ao cadastrar os dados!");
 					}

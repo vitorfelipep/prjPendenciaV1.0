@@ -4,21 +4,24 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.model.ConsultaPedModel;
+import br.com.model.ConsultaBuscaModelo;
 import br.com.model.FiltroBusca;
 import br.com.model.FormatarDatas;
 
 public class ConsultaPedDao extends DaoMysql{
-	public List<ConsultaPedModel> consultaPendencia(FiltroBusca fb){
+	public List<ConsultaBuscaModelo> consultaPendencia(FiltroBusca fb){
 		try{
 			open();
 				
 			FormatarDatas dataF = new FormatarDatas();//Instancio o objeto para instanciar a data util
 			Date dataFim = dataF.formatarData(fb.getDataFim()); // me retorna a data reformulada para cadastro no banco.
 			Date dataInicio = dataF.formatarData(fb.getDataIni());
-			
+				
+				System.out.println(dataFim);
+				
 				stmt = con.prepareStatement("SELECT tbped.idPed, "+
 										     " tbped.nomependencia, "+ 
+										     " tbped.descPend, "+
 										    "  tbped.statusPend, "+
 										    "  tbpat.descPasta, "+
 										    "  date_Format(tbped.datEmiPend, '%d/%m/%Y' ) as 'DataEmissao', "+
@@ -52,16 +55,17 @@ public class ConsultaPedDao extends DaoMysql{
 				
 					rs = stmt.executeQuery();
 					
-					List<ConsultaPedModel> listaConsultaPed = new ArrayList<ConsultaPedModel>();
+					List<ConsultaBuscaModelo> listaConsultaPed = new ArrayList<ConsultaBuscaModelo>();
 					while(rs.next()){
-						ConsultaPedModel cp = new ConsultaPedModel();
+						ConsultaBuscaModelo cp = new ConsultaBuscaModelo();
 						
 						cp.setIdPed(rs.getInt("idPed"));
 						cp.setNomePendencia(rs.getString("nomependencia"));
+						cp.setDescPendencia(rs.getString("descPend"));
 						cp.setStatusPendencia(rs.getString("statusPend"));
 						cp.setDescPasta(rs.getString("descPasta"));
-						cp.setDataEmisao(rs.getDate("DataEmissao"));
-						cp.setDataFechamento(rs.getDate("dataFechamento"));
+						cp.setDataEmisao(rs.getString("DataEmissao"));
+						cp.setDataFechamento(rs.getString("dataFechamento"));
 						cp.setDescExtensao(rs.getString("descExtensao"));
 						cp.setIdPasta(rs.getInt("idPasta"));
 						cp.setObsExtensao(rs.getString("obExtensao"));

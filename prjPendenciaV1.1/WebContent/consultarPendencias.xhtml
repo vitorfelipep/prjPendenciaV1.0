@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	
-	<ui:decorate template="index.xhtml" >
+	<ui:decorate template="home.xhtml" >
 	<ui:define name="centro">
 	<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
 	<p:focus context="panelConsulta"/>
@@ -22,10 +22,10 @@
 					<p:panelGrid columns="4" columnClasses="ui-grid-col-4,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
 					
 						<p:outputLabel for="dataIni" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data Inicial:" />
-        				<p:calendar id="dataIni" value="#{filtroBuscaMb.filtroBusca.dataIni}" style="width:250px;" effect="fold" />
+        				<p:calendar id="dataIni" value="#{filtroBuscaMb.filtroBusca.dataIni}"  pattern="dd/MM/yyyy" locale="pt" style="width:250px;" effect="fold" />
         				
         				<p:outputLabel for="dataFim" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data Final:" />
-        				<p:calendar id="dataFim" value="#{filtroBuscaMb.filtroBusca.dataFim}" style="width:250px;" effect="fold" />
+        				<p:calendar id="dataFim" value="#{filtroBuscaMb.filtroBusca.dataFim}"  pattern="dd/MM/yyyy" locale="pt" style="width:250px;" effect="fold" />
 					
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Tipo de situação:" />	
 						<p:selectOneMenu id="fimPendencia" value="#{filtroBuscaMb.filtroBusca.tipoBusca}">
@@ -103,7 +103,7 @@
 			                </p:column>
 			               
 			                <p:column headerText="" style="text-align: center;width:80px;">
-			              		<p:commandButton id="btAlterapend" icon="ui-icon-pencil" type="button"  update=":painelAlteraPend"    oncomplete="PF('dlg2').show();"  >
+			              		<p:commandButton id="btAlterapend" icon="ui-icon-pencil" type="button"  actionListener="#{filtroBuscaMb.buscarPendencias}"  update=":pendenciaNome"  oncomplete="PF('dlg2').show();"  >
 			              			<f:setPropertyActionListener value="#{p}" target="#{filtroBuscaMb.filtroAlteracao}"  for="btAlterapend"/>
 			              		</p:commandButton>
 			                </p:column>

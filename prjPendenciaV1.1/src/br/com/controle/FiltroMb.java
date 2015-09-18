@@ -7,106 +7,108 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-
 import br.com.model.FiltroCadPendencia;
 import br.com.model.Pasta;
-import br.com.model.Pendencia;
-import br.com.persistence.dao.CosultarPendencias;
-import br.com.persistence.dao.FecharPendenciaDao;
 import br.com.persistence.dao.PastaDao;
 import br.com.persistence.dao.PendenciaDao;
 
 
 @ManagedBean(name="filtroMb") 
-@ViewScoped
+@RequestScoped
 public class FiltroMb implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	 
     private boolean value2;
     private boolean mostrar;
-    private String filtroBusca;
     private FiltroCadPendencia filtro;
     private List<Pasta> listaPasta;
-    private Pendencia pendencia;
-    private Pasta pasta;
-    private List<Pendencia> listaPendencia; 
+   
+    
     
    //Metodo construtor
 	public FiltroMb() {
 			
-		filtro = new FiltroCadPendencia();
-		pendencia = new Pendencia();
+		filtro = new FiltroCadPendencia();		
 		listaPasta =  new ArrayList<Pasta>();
-		listaPendencia = new ArrayList<Pendencia>();
-		
-		
+		verificarPermissaoUsuario();
+
 	}
 		
+	//Metodo para verificar validação de acesso.
+	public void verificarPermissaoUsuario(){
+//		try{
+//			if(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario") == null){
+//				System.out.println(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("Usuario"));
+//				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+//			}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+	}
 	
-	//Mï¿½todo de cadastro
+	//Método de cadastro
 	public void cadastrar(){
 		try{
 			
 			
 			if(filtro.getNomPendencia().isEmpty()){
 				FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("AtenÃ§Ã£o!","Campo nome da pendÃªncia Ã© obrigatÃ³rio!"));
+				context.addMessage(null, new FacesMessage("Atenção!","Campo nome da pendência é obrigatório!"));
 			}else if(filtro.getDescPendencia().isEmpty()){
 				FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("AtenÃ§Ã£o!","Campo descriÃ§Ã£o da pendÃªncia Ã© obrigatÃ³rio!"));
+				context.addMessage(null, new FacesMessage("Atenção!","Campo descrição da pendência é orbigatório!"));
 			}else if(!(filtro.getPasta() > 0)){
 				FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("AtenÃ§Ã£o!","Campo Pasta Ã© obrigatÃ³rio!"));
-			}
+				context.addMessage(null, new FacesMessage("Atenção!","Campo Pasta é obrigatório!"));
+			}else
+				if(filtro.getNomeExtensao() == null || filtro.getExtensao() == null){
 			
-			System.out.println(filtro);
-			new PendenciaDao().cadastrarPendencia(filtro);//Efetua o cadastro... 
+					System.out.println("Entrou aqui");
+					filtro.setNomeExtensao("--Sem Extensão--");
+					filtro.setExtensao("--Sem Extensão--");;
+					new PendenciaDao().cadastrarPendencia(filtro);//Efetua o cadastro... 
+					
+					filtro = new FiltroCadPendencia();
+					inicializarList();
+
+				}else{
+					
+					System.out.println(filtro);
+					new PendenciaDao().cadastrarPendencia(filtro);//Efetua o cadastro... 
+					inicializarList();
+				}
+			
 			
 			this.filtro = new FiltroCadPendencia();
 			
-			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	//metodo de fechar pendencias
-	public void fecharPendencia(){
-		
-		if(!pendencia.getStatusPed().equalsIgnoreCase("Em aberto")){
-			System.out.println(pendencia);
-			new FecharPendenciaDao().fecharPendencias(pendencia);
-		}else{
-			System.out.println("PendÃªncia jÃ¡ estÃ¡ em aberto, para fechar selecione fechar!");
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("AtenÃ§Ã£o!","PendÃªncia jÃ¡ estÃ¡ em aberto, para fechar selecione fechar!"));
-		}
-	}
-	//Consulta de pendencias para fechamento de pendencias
-	public List<Pendencia> consultarPendencia(){
-		
-		try{
-			 listaPendencia = new ArrayList<Pendencia>();
-			 System.out.println(pendencia.getNomependencia());
-			 listaPendencia = new CosultarPendencias().getListaPendencia(pendencia);
-			 System.out.println(listaPendencia);
-			 return listaPendencia;
-		
-		}catch(Exception e){
-			e.printStackTrace();
-			e.getMessage();
-			return null;
-		}
-	}
     
 	@PostConstruct
-	public void inicializarList(){//Este mï¿½todo constrï¿½i a lista de pendencia aberta
+	public void inicializarList(){//Este método constrói a lista de pendencia aberta
 		listaPasta = new PastaDao().getPasta();
 	}
 	
+	//Método saida(logout)
+	public String sair(){
+		System.out.println("Entrou aqui");
+		try{
+			
+//		   SessionContext sessao = new SessionContext();
+//		   sessao.encerrarSessao();
+			return "index.xhtml?faces-redirect=true";
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
     
     public List<Pasta> getListaPasta() {
 		return listaPasta;
@@ -119,16 +121,6 @@ public class FiltroMb implements Serializable{
 		
 	}
 	
-	
-	 public Pasta getPasta() {
-		return pasta;
-	}
-
-
-	public void setPasta(Pasta pasta) {
-		this.pasta = pasta;
-	}
-
 
 	public FiltroCadPendencia getFiltro() {
 		return filtro;
@@ -138,11 +130,6 @@ public class FiltroMb implements Serializable{
 		this.filtro = filtro;
 	}
 
- 
-   
-    
-    
-     
     public boolean isValue2() {
     	System.out.println(value2);
     	return value2;
@@ -166,20 +153,10 @@ public class FiltroMb implements Serializable{
 		this.mostrar = mostrar;
 	}
 
-
-	public List<Pendencia> getListaPendencia() {
-		return listaPendencia;
-	}
-
-
-	public void setListaPendencia(List<Pendencia> listaPendencia) {
-		this.listaPendencia = listaPendencia;
-	}
-
 	
 	
 	public void addMessage() {
-        String summary = value2 ? "Com extensÃ£o" : "Sem extensÃ£o!"; 
+        String summary = value2 ? "Com extensão" : "Sem extensão!"; 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
 
         	if(!value2 == false){  
@@ -192,26 +169,6 @@ public class FiltroMb implements Serializable{
         	 
     }
 
-	
-	public String getFiltroBusca() {
-		return filtroBusca;
-	}
-
-
-	public void setFiltroBusca(String filtroBusca) {
-		this.filtroBusca = filtroBusca;
-	}
-
-
-	public Pendencia getPendencia() {
-		return pendencia;
-	}
-
-
-	public void setPendencia(Pendencia pendencia) {
-		this.pendencia = pendencia;
-	}
-	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

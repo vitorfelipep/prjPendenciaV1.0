@@ -7,7 +7,7 @@
 <h:head>
 <meta http-equiv="cache-control"   content="no-cache" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>CP - Controle de Pendências</title>
+<title>Login</title>
 
 <!-- Icone -->
 <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon" />
@@ -17,127 +17,45 @@
 
 <!-- Folha de estilo -->
  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
- <script>
- jQuery(document).ready(function(jQuery) {  
-	    // Chamada da funcao upperText(); ao carregar a pagina  
-	    upperText();  
-	});  
-	// Funcao que faz o texto ficar em uppercase  
-	function upperText() {  
-	    // Para tratar o colar  
-	    jQuery(".up").bind('paste', function(e) {  
-	        var el = jQuery(this);  
-	        setTimeout(function() {  
-	            var text = jQuery(el).val();  
-	            el.val(text.toUpperCase());  
-	        }, 100);  
-	    });  
-	  
-	    // Para tratar quando é digitado  
-	    jQuery(".up").keypress(function() {  
-	        var el = jQuery(this);  
-	        setTimeout(function() {  
-	            var text = jQuery(el).val();  
-	            el.val(text.toUpperCase());  
-	        }, 100);  
-	    });  
-	} 
-	
-
-
-
-
-// 	//<![CDATA[
-// 	function setaFoco(elemento)  {  
-// 	    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;  
-// 	    if (keyCode == 13) {  
-// 	        var i;  
-// 	        for (i = 0; i < elemento.form.elements.length; i++)  
-// 	            if (elemento == elemento.form.elements[i])  
-// 	                break;  
-// 	        i = (i + 1) % elemento.form.elements.length;  
-// 	        elemento.form.elements[i].focus();  
-// 	        event.preventDefault();  
-// 	        return false;  
-// 	    }  
-// 	    return false;  
-// 	}  
-// 	//]]>
- </script>
- 
 </h:head>
 <h:body  style="background-image : URL(imagens/bckg.jpg);">
+	<div class="ui-fluid" >
+	<p:focus context="panelRelatorio"/>
+		<p:panel id="panelRelatorio" header="Autenticação de usuarios" toggleable="true" toggleOrientation="horizontal" style="width:50%;margin-top:150px;margin-left:28%;" >
+			
+			<h:form id="formlogin" >
+					
+				<!-- Componente das mensagens de validação do primeFaces -->
+					<p:growl id="msgLastname" showDetail="true" sticky="true" /> 
+					
+					<!-- Painel grid é a grid que comporta os campos do formulario -->
+		    		<p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank cadPendend"  >
+		       
+					
+						<p:outputLabel style="font-family: Arial,SANS-SERIF;text-align:right !important;width:20%;" for="usuario" value="Usuario:" />	
+						<p:inputText id="usuario"  value="#{loginBean.usuario.login}" maxlength="50" style="width:250px"  />
+						
+						
+						<p:outputLabel style="font-family: Arial,SANS-SERIF;" for="senha" value="Senha:" />
+						<p:password id="senha" value="#{loginBean.usuario.senha}" style="width:250px" />
 
-	<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
-	<h:form>  
-	    <p:growl id="messages"/>
-	 
-	    <p:menubar style="width:100%;">
-	        <p:submenu label="Inicio" icon="ui-icon-document">
-	            <p:menuitem value="Home" url="http://localhost:8080/prjPendenciaV1.0/index.jsf" />
-	            <p:separator />
-	            <p:menuitem value="Quit" url="#" />
-	        </p:submenu>
-	 
-	        <p:submenu label="Pendências" icon="ui-icon-document">
-	            <p:submenu label="Cadastro" icon="ui-icon-contact">
-	            	
-		                <p:menuitem value="Pendências" action="cadastroPendencia.xhtml?faces-redirect=true" />
-		          
-		            
-	            </p:submenu>
-	            <p:submenu label="Fechamento" icon="ui-icon-contact">
-		                <p:menuitem value="Pendências" action="fecharPendencia.xhtml?faces-redirect=true" />
-		        </p:submenu>
-	        </p:submenu>
-	 
-	        <p:submenu label="Pesquisar" icon="ui-icon-search">
-	            <p:menuitem value="Pendências" action="consultarPendencias.xhtml?faces-redirect=true" />
-	              <p:menuitem value="Pendências teste" action="consultaPendencia.xhtml?faces-redirect=true" />
-	            <p:submenu label="Search" icon="ui-icon-search">
-	                <p:submenu label="Text">
-	                    <p:menuitem value="Workspace" url="#" />
-	                </p:submenu>
-	                <p:menuitem value="File" url="#" />
-	            </p:submenu>
-	        </p:submenu>
-	 
-	        <p:submenu label="Actions" icon="ui-icon-gear">
-	            <p:submenu label="Ajax" icon="ui-icon-refresh">
-	                <p:menuitem value="Save" actionListener="#{menuView.save}" icon="ui-icon-disk" update="messages"/>
-	                <p:menuitem value="Update" actionListener="#{menuView.update}" icon="ui-icon-arrowrefresh-1-w" update="messages"/>
-	            </p:submenu>
-	            <p:submenu label="Non-Ajax" icon="ui-icon-newwin">
-	                <p:menuitem value="Delete" actionListener="#{menuView.delete}" icon="ui-icon-close" update="messages" ajax="false"/>
-	            </p:submenu>
-	        </p:submenu>
-	 
-	        <p:menuitem value="Quit" url="http://localhost:8080/prjPendenciaV1.0/index.jsf" icon="ui-icon-close" />
-	 
-	        <f:facet name="options">
-<!-- 	            <p:inputText style="margin-right:10px" placeholder="Search"/> -->
-	            <p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
-	        </f:facet>
-	    </p:menubar>
-	</h:form>
-
-	
-	<div style="margin-top:30px;width:100%;border:none !important">
-		<p:layoutUnit position="center">
-			<ui:insert name="centro" >
+					<br/>
+					
+		   		</p:panelGrid>
+		   		<p:panel >
+		   		<p:commandButton value="Entrar" id="btnProcessar" action="#{loginBean.entrar}" ajax="true" update="formlogin,msgLastname" resetValues="true" />	
 				
+				</p:panel>
+			</h:form>
 				
-				
-			</ui:insert>
-		</p:layoutUnit>
-	</div>
-	</div>	
-	<!-- Carregando -->
+			<!-- Carregando -->
 			<p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 			 
 			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
 			    <p:graphicImage value="imagens/carregando.gif"  />
 			</p:dialog>
-	
+		
+		</p:panel>
+		</div>
 </h:body>
 </html>

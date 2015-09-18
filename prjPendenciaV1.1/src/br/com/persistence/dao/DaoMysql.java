@@ -24,11 +24,11 @@ public class DaoMysql {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/adv_pendencia", "root", "");	
 			st = con.createStatement();
-			System.out.println("Conexï¿½o efetuada com sucesso"); // Mensagem para o usuï¿½rio
+			System.out.println("Conexão efetuada com sucesso"); // Mensagem para o usuï¿½rio
 			
 			
 		}catch(SQLException ex){
-			System.out.println("Falha na Conexï¿½o"+ex.getMessage());// Mensagem para o usuï¿½rio
+			System.out.println("Falha na Conexão"+ex.getMessage());// Mensagem para o usuï¿½rio
 		}catch(Exception e){
 			e.printStackTrace();
 		}

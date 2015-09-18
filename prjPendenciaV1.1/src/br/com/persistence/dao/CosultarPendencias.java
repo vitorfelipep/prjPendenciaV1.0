@@ -18,8 +18,8 @@ public class CosultarPendencias extends DaoMysql{
 												     "  date_format(p.datEmiPend, '%d/%m/%Y') dataCadPend,"+
 												     "  p.tab_pasta_idPasta, "+
 												     "  pt.descPasta "+
-									      " FROM adv_pendencia.tab_pedencia p "+
-									      " INNER JOIN adv_pendencia.tab_pasta pt "+
+									      " FROM vitorfe_pendencia.tab_pedencia p "+
+									      " INNER JOIN vitorfe_pendencia.tab_pasta pt "+
 									      " ON pt.idPasta = p.tab_pasta_idPasta "+
 										    "  WHERE nomependencia like ? "+
 											"  AND statusPend = 'Em aberto' "+

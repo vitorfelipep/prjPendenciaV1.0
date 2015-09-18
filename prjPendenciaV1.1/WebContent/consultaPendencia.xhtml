@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	
-<ui:decorate template="index.xhtml" >
+<ui:decorate template="home.xhtml" >
 	<ui:define name="centro">
 		<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
 			<p:focus context="panelRelatorio"/>
@@ -17,57 +17,66 @@
 				<p:growl id="msgLastname" showDetail="true" sticky="true" />  
 				<p:panelGrid id="painelAlteraPend"  columns="2"  columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank"  >
 									
-							<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="idPed" value="N° da Pendencia:" />
-							<h:panelGroup>
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="idPed" value="N° da Pendencia:" />
+						<h:panelGroup>
 							<p:inputText id="idPed"  value="#{filtroBuscaMb.filtroAlteracao.idPed}"  size="25"  styleClass="up" readonly="true"/>
-							
+							<h:outputText  value="    " />
 							<p:commandButton icon="ui-icon-search" type="button" onclick="PF('dlg2').show();"  />
 						</h:panelGroup>
 						
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="pendenciaNome" value="Nome da Pendencia:" />
-						<p:inputText id="pendenciaNome"  value="#{filtroBuscaMb.filtroAlteracao.nomePendencia}"  size="30"  styleClass="up"   />
+						<p:inputText id="pendenciaNome"  value="#{filtroBuscaMb.filtroAlteracao.nomePendencia}"  size="30"    />
+						 
+						 <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="pendenciaDesc" value="Descrição da Pendencia:" />
+						<p:inputText id="pendenciaDesc"  value="#{filtroBuscaMb.filtroAlteracao.descPendencia}"  size="30"     />
+						 
 						 
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="pendStatus" value="Status pendência:" />
-						<p:inputText id="pendStatus"  value="#{filtroBuscaMb.filtroAlteracao.statusPendencia}"  size="30"  styleClass="up" />
+						<p:selectOneMenu id="pendStatus" value="#{filtroBuscaMb.filtroAlteracao.statusPendencia}" >
+						            <f:selectItem itemLabel="--Selecione--" itemValue="" />
+						            <f:selectItem  itemLabel="#{filtroBuscaMb.filtroAlteracao.statusPendencia}" itemValue="#{filtroBuscaMb.filtroAlteracao.statusPendencia}" />
+						            <f:selectItem itemLabel="Em aberto" itemValue="Em aberto" />        
+						 </p:selectOneMenu>
+						
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="idPasta" value="Ida pasta:"></h:outputLabel>
+						<p:inputText id="idPasta"  value="#{filtroBuscaMb.filtroAlteracao.idPasta}"  size="30"   readonly="true" />
 						 
-						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descpasta" value="Descrição da pasta:" />
-						<p:inputText id="descpasta"  value="#{filtroBuscaMb.filtroAlteracao.descPasta}"  size="30"  styleClass="up"  />
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descpasta" value="Pasta:" />
+						<p:inputText id="descpasta"  value="#{filtroBuscaMb.filtroAlteracao.descPasta}"  size="30"  readonly="true" />
 						 
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="dataemissao" value="Data de emissão:" />
-						<p:inputText id="dataemissao"  value="#{filtroBuscaMb.filtroAlteracao.dataEmisao}"  size="30"  styleClass="up"   />
+						<p:inputText id="dataemissao"  value="#{filtroBuscaMb.filtroAlteracao.dataEmisao}"  size="30"  readonly="true"  />
 						 
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="dataFechamento" value="Data de fechamento:" />
 						<p:inputText id="dataFechamento"  value="#{filtroBuscaMb.filtroAlteracao.dataFechamento}"  size="30"  styleClass="up"   />
 						 
-						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descpasta" value="Descrição da extensão:"></h:outputLabel>
-						<p:inputText id="descextensao"  value="#{filtroBuscaMb.filtroAlteracao.descExtensao}"  size="30"  styleClass="up"  />
-						 
-						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="idPasta" value="Ida pasta:"></h:outputLabel>
-						<p:inputText id="idPasta"  value="#{filtroBuscaMb.filtroAlteracao.idPasta}"  size="30"  styleClass="up" readonly="true" />
-						 
-						 
-						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="obsExtensao" value="Observaçãoda descrição:" />
-						<p:inputTextarea id="obsExtensao"  value="#{filtroBuscaMb.filtroAlteracao.obsExtensao}" maxlength="255"  styleClass="up"  style="width:285px"/>
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descextensao" value="Descrição da extensão:" />
+						<p:inputText id="descextensao"  value="#{filtroBuscaMb.filtroAlteracao.descExtensao}"  size="30"    />
+
+						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="obsExtensao" value="Observação da descrição:" />
+						<p:inputTextarea id="obsExtensao"  value="#{filtroBuscaMb.filtroAlteracao.obsExtensao}" maxlength="255"    style="width:285px"/>
 						 
 						 
 				</p:panelGrid>
-				<p:panelGrid columns="2" style="width:100%;">
-					<p:commandButton id="btnAlterar" action="#{filtroBuscaMb.alterarPendenciaModal}" update="formConsultaPendencia" ajax="true" value="Alterar Pendência" resetValues="true"  />
+				<br/>
+				<p:panelGrid columns="2" style="width:100%;"> 
+					<p:commandButton id="btnAlterar" action="#{filtroBuscaMb.alterarPendenciaModal}" update="formConsultaPendencia, msgLastname " ajax="true" value="Alterar Pendência" resetValues="true"  />
+	           		<p:commandButton id="btnExcluir" action="#{filtroBuscaMb.excluirPendencia}" update="formConsultaPendencia, msgLastname " ajax="true" value="Excluir Pendência" resetValues="true"  />
 	            </p:panelGrid>   
 	
 						
-			<p:dialog  id="caltpend" styleClass="modalBuscaPendencia" header="Modal Dialog" widgetVar="dlg2" modal="true" showEffect="slide" resizable="false"  height="auto" width="1300" >			   			
+			<p:dialog  id="caltpend" styleClass="modalBuscaPendencia" header="Modal Dialog" widgetVar="dlg2" modal="true" showEffect="slide" resizable="false"  height="auto"  >			   			
 					
-				
+					
 			
 					<!-- Painel grid é a grid que comporta os campos do formulario da consulta -->
 					<p:panelGrid columns="4" columnClasses="ui-grid-col-4,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" >
 				
 							<p:outputLabel for="dataIni" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data Inicial:" />
-	        				<p:calendar id="dataIni" value="#{filtroBuscaMb.filtroBusca.dataIni}" style="width:250px;" effect="fold" />
+	        				<p:calendar id="dataIni" value="#{filtroBuscaMb.filtroBusca.dataIni}"  pattern="dd/MM/yyyy" locale="pt"  style="width:250px;" effect="fold" />
 	        				
 	        				<p:outputLabel for="dataFim" style="font-family: Arial,SANS-SERIF;width:20%;" value="Data Final:" />
-	        				<p:calendar id="dataFim" value="#{filtroBuscaMb.filtroBusca.dataFim}" style="width:250px;" effect="fold" />
+	        				<p:calendar id="dataFim" value="#{filtroBuscaMb.filtroBusca.dataFim}"  pattern="dd/MM/yyyy" locale="pt" style="width:250px;" effect="fold" />
 						
 							<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descPend" value="Tipo de situação:" />	
 							<p:selectOneMenu id="fimPendencia" value="#{filtroBuscaMb.filtroBusca.tipoBusca}">
@@ -80,8 +89,8 @@
 							<h:outputLabel style="font-family: Arial,SANS-SERIF;width:200px;" for="descPend" value="Nome da pendência:" />
 							<p:inputText id="descPend"  value="#{filtroBuscaMb.filtroBusca.nomPendencia}" maxlength="200" style="width:250px;" />
 								
-							<p:commandButton  icon="ui-icon-search" update="abc"  value="Consultar" id="btnProcessar" action="#{filtroBuscaMb.buscarPendencias}"  >
-									<p:ajax update="msgLastname"  />
+							<p:commandButton  icon="ui-icon-search" update="abc,msgLastname " ajax="true" value="Consultar" id="btnProcessar" action="#{filtroBuscaMb.buscarPendencias}"  >
+									
 							</p:commandButton>
 	
 					</p:panelGrid>
@@ -106,11 +115,15 @@
 				                    <h:outputText id="nomePendencia" value="#{p.nomePendencia} " />
 				                </p:column>
 				                
-				                <p:column headerText="Descrição Pendência" style="text-align: center;">
+				                <p:column headerText="Desc. Pendencia" style="text-align: center;">
+				                    <h:outputText id="descpendencia" value="#{p.descPendencia} " />
+				                </p:column>
+				                
+				                <p:column headerText="Status Pendência" style="text-align: center;">
 				                    <h:outputText id="pendenciaStatus" value="#{p.statusPendencia} " />
 				                </p:column>
 				                
-				                 <p:column headerText="Status Pendencia" style="text-align: center;">
+				                 <p:column headerText="Desc. Pasta" style="text-align: center;">
 				                    <h:outputText id="pastaDesc" value="#{p.descPasta} " />
 				                </p:column>
 				                
@@ -122,14 +135,14 @@
 				                    <h:outputText id="datFcehamento" value="#{p.dataFechamento} " />
 				                </p:column>
 				                
-				                <p:column headerText="desc. Extensao" style="text-align: center;">
-				                    <h:outputText id="Desc_extensao" value="#{p.descExtensao} " />
-				                </p:column>
-				                
 				                <p:column headerText="id Pasta" style="text-align: center;">
 				                    <h:outputText id="idpasta" value="#{p.idPasta} " />
 				                </p:column>
 				                
+				                <p:column headerText="desc. Extensao" style="text-align: center;">
+				                    <h:outputText id="Desc_extensao" value="#{p.descExtensao} " />
+				                </p:column>
+
 				                <p:column headerText="obsExtensao" style="text-align: center;">
 				                    <h:outputText id="extensao" value="#{p.obsExtensao} " />
 				                </p:column>

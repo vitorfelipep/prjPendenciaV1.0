@@ -3,15 +3,8 @@ package br.com.persistence.dao;
 
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
-
 import br.com.model.FiltroCadPendencia;
 import br.com.model.FormatarDatas;
 

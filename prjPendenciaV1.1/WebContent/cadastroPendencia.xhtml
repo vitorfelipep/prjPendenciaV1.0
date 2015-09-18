@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:decorate template="index.xhtml">
+<ui:decorate template="home.xhtml">
 	<ui:define name="centro">
 		<div class="ui-fluid" style="background-image : URL(imagens/bckg.jpg);">
 		<p:focus context="panelRelatorio"/>
@@ -28,7 +28,7 @@
 						<p:inputText id="descPend"  value="#{filtroMb.filtro.descPendencia}" maxlength="200" style="width:250px;" />
 						
 						<p:outputLabel for="effect" value="Previsão de fechamento:" />
-        				<p:calendar id="effect" value="#{filtroMb.filtro.dataPrevPendencia}" effect="fold" />
+        				<p:calendar id="effect" value="#{filtroMb.filtro.dataPrevPendencia}" pattern="dd/MM/yyyy" locale="pt" effect="fold" />
 						
 						<h:outputLabel style="font-family: Arial,SANS-SERIF;" for="advanced" value="Pasta:" />	
 						<p:selectOneMenu id="advanced" value="#{filtroMb.filtro.pasta}"  >
@@ -45,14 +45,14 @@
 					        </p:selectBooleanCheckbox>
 				        	
 				        	
-				        	<h:panelGroup id="grade">
+				        	<p:panelGrid columns="2" id="grade" styleClass="semBorda" >
 				        		
 						        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="nomeExtensao" value="Nome da Extensão:" />	
 								<p:inputText id="nomeExtensao"  value="#{filtroMb.filtro.nomeExtensao}"   maxlength="25" style="width:200px;"   rendered="#{filtroMb.mostrar}"  />
 		
 						        <h:outputLabel style="font-family: Arial,SANS-SERIF;" for="descExt" value="Extensão:" />	
 								<p:inputTextarea rows="4" cols="33" value="#{filtroMb.filtro.extensao}" rendered="#{filtroMb.mostrar}" id="descExt"/>
-							</h:panelGroup>
+							</p:panelGrid>
 					<br/>
 					
 		   		</p:panelGrid>

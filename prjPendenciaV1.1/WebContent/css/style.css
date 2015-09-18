@@ -12,6 +12,10 @@ body{
 		
 }
 
+.modalBuscaPendencia{
+	width:95% !important;
+}
+	
  .ui-grid-col-2{
 	width: 26% !important;
 }
@@ -33,10 +37,15 @@ body{
 }
 
 #produto{
-		width:75% !important;
-		display:block;
-		margin-left: -10px !important;
+	width:75% !important;
+	display:block;
+	margin-left: -10px !important;
 }
+
+
+.semBorda tr, .semBorda td {  
+    border: none !important;  
+}  
 
 #formFiltro:j_idt54{
 	display:none;
@@ -110,6 +119,10 @@ body{
 	
 	}
 	
+	.modalBuscaPendencia
+	{
+		width:90% !important;
+	}
 }
 @media (max-width: 600px) {
   	body{
@@ -132,7 +145,7 @@ body{
 	
 	.modalBuscaPendencia
 	{
-		width:100% !important;
+		width:90% !important;
 	}
 	
 	.modalTabelaSelect
@@ -143,11 +156,14 @@ body{
 	#pendencia{
 		margin-left:20px;
 	}
+	
 	#btnPesquisar{
+	
 		left:-5px;px;
 	}
 	
 	#advanced{
+	
 		width:75%;
 		margin-left: -4px;
 	}
@@ -247,12 +263,11 @@ body{
 		background-image : URL(imagens/bckg.jpg);
 		height:0 auto;
 		width:95%;
-		}
+	}
 	
 	#panelRelatorio{
 	
 		  width: 100%;
-		 
 		  display:block;
 	
 	}
